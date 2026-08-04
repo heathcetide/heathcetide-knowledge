@@ -1584,6 +1584,19 @@ export class BaguSettingTab extends PluginSettingTab {
     containerEl.createEl("h3", { text: "题库与计划" });
 
     new Setting(containerEl)
+      .setName("题库根目录")
+      .setDesc("只扫描该文件夹下的 Markdown（相对库根，例如「八股」）。空=扫描整个库。")
+      .addText((t) =>
+        t
+          .setPlaceholder("八股")
+          .setValue(this.plugin.settings.questionsRoot || "")
+          .onChange(async (v) => {
+            this.plugin.settings.questionsRoot = v.trim().replace(/^\/+|\/+$/g, "");
+            await this.plugin.saveSettings();
+          })
+      );
+
+    new Setting(containerEl)
       .setName("排除文件名包含")
       .addText((t) =>
         t

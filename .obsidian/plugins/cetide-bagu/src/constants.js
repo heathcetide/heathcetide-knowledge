@@ -4,6 +4,8 @@ export const DB_PATH = ".bagu/qiuzhao-bagu.db";
 export const EBBINGHAUS_DEFAULT = [1, 2, 4, 7, 15, 30, 60];
 
 export const DEFAULT_SETTINGS = {
+  /** 只扫描该目录下的 Markdown 作为面试题（相对库根） */
+  questionsRoot: "八股",
   excludePatterns: ["00-知识总览", "题单总索引"],
   writeRequireText: true,
   cooldownSize: 12,

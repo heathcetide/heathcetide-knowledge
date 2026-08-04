@@ -2219,6 +2219,8 @@ var VIEW_TYPE_BAGU = "cetide-bagu-view";
 var DB_PATH = ".bagu/qiuzhao-bagu.db";
 var EBBINGHAUS_DEFAULT = [1, 2, 4, 7, 15, 30, 60];
 var DEFAULT_SETTINGS = {
+  /** 只扫描该目录下的 Markdown 作为面试题（相对库根） */
+  questionsRoot: "\u516B\u80A1",
   excludePatterns: ["00-\u77E5\u8BC6\u603B\u89C8", "\u9898\u5355\u603B\u7D22\u5F15"],
   writeRequireText: true,
   cooldownSize: 12,
@@ -2282,7 +2284,14 @@ function addDaysMs(fromMs, days) {
   d.setDate(d.getDate() + Math.round(days));
   return d.getTime();
 }
-function parseQuestionsFromMarkdown(path, content, excludePatterns) {
+function parseQuestionsFromMarkdown(path, content, excludePatterns, questionsRoot = "") {
+  const root = String(questionsRoot || "").replace(/^\/+|\/+$/g, "");
+  let relPath = path;
+  if (root) {
+    const prefix = root + "/";
+    if (path !== root && !path.startsWith(prefix)) return [];
+    relPath = path === root ? "" : path.slice(prefix.length);
+  }
   const base = path.split("/").pop() || path;
   const nameNoExt = base.replace(/\.md$/i, "");
   for (const p of excludePatterns || []) {
@@ -2291,8 +2300,9 @@ function parseQuestionsFromMarkdown(path, content, excludePatterns) {
       return [];
     }
   }
-  const parts = path.split("/");
-  const moduleName = parts.length > 1 ? parts[0] : "\u6839\u76EE\u5F55";
+  const parts = (relPath || path).split("/").filter(Boolean);
+  const moduleName = parts.length > 1 ? parts[0] : parts[0] ? "\u6839\u76EE\u5F55" : "\u6839\u76EE\u5F55";
+  const idPath = relPath || path;
   const lines = content.split(/\r?\n/);
   const headingRe = /^###\s+Q(\d+)\s*[\.、．]?\s*(.*)$/;
   const questions = [];
@@ -2302,7 +2312,7 @@ function parseQuestionsFromMarkdown(path, content, excludePatterns) {
     const answer = current.answerLines.join("\n").trim();
     const question = current.question.trim();
     if (question) {
-      const rawId = `${path}#Q${current.num}:${question}`;
+      const rawId = `${idPath}#Q${current.num}:${question}`;
       questions.push({
         id: hashId(rawId),
         num: current.num,
@@ -4965,6 +4975,12 @@ var BaguSettingTab = class extends import_obsidian.PluginSettingTab {
       })
     );
     containerEl.createEl("h3", { text: "\u9898\u5E93\u4E0E\u8BA1\u5212" });
+    new import_obsidian.Setting(containerEl).setName("\u9898\u5E93\u6839\u76EE\u5F55").setDesc("\u53EA\u626B\u63CF\u8BE5\u6587\u4EF6\u5939\u4E0B\u7684 Markdown\uFF08\u76F8\u5BF9\u5E93\u6839\uFF0C\u4F8B\u5982\u300C\u516B\u80A1\u300D\uFF09\u3002\u7A7A=\u626B\u63CF\u6574\u4E2A\u5E93\u3002").addText(
+      (t) => t.setPlaceholder("\u516B\u80A1").setValue(this.plugin.settings.questionsRoot || "").onChange(async (v) => {
+        this.plugin.settings.questionsRoot = v.trim().replace(/^\/+|\/+$/g, "");
+        await this.plugin.saveSettings();
+      })
+    );
     new import_obsidian.Setting(containerEl).setName("\u6392\u9664\u6587\u4EF6\u540D\u5305\u542B").addText(
       (t) => t.setValue((this.plugin.settings.excludePatterns || []).join(", ")).onChange(async (v) => {
         this.plugin.settings.excludePatterns = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
@@ -5117,21 +5133,30 @@ var CetideBaguPlugin = class extends import_obsidian2.Plugin {
     await this.ensureDb();
     const files = this.app.vault.getMarkdownFiles();
     const exclude = this.settings.excludePatterns || [];
+    const root = String(this.settings.questionsRoot || "\u516B\u80A1").replace(/^\/+|\/+$/g, "");
     const all = [];
     for (const f of files) {
       if (f.path.startsWith(".obsidian/") || f.path.startsWith(".bagu/"))
         continue;
+      if (root) {
+        const prefix = root + "/";
+        if (f.path !== root && !f.path.startsWith(prefix)) continue;
+      }
       try {
         const content = await this.app.vault.read(f);
         all.push(
-          ...parseQuestionsFromMarkdown(f.path, content, exclude)
+          ...parseQuestionsFromMarkdown(f.path, content, exclude, root)
         );
       } catch (_) {
       }
     }
     await this.db.upsertQuestions(all);
     await this.db.persist(true);
-    if (notice) new import_obsidian2.Notice(`\u5DF2\u540C\u6B65 ${all.length} \u9898\u5230 SQLite`);
+    if (notice) {
+      new import_obsidian2.Notice(
+        root ? `\u5DF2\u4ECE\u300C${root}\u300D\u540C\u6B65 ${all.length} \u9898\u5230 SQLite` : `\u5DF2\u540C\u6B65 ${all.length} \u9898\u5230 SQLite`
+      );
+    }
     return all.length;
   }
   async activateView() {

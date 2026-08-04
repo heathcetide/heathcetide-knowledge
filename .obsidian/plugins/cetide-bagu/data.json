@@ -22,6 +22,7 @@
     "preferredModules": [
       "JVM",
       "Java基础"
-    ]
+    ],
+    "questionsRoot": "八股"
   }
 }

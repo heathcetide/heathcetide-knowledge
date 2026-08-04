@@ -36,7 +36,15 @@ export function shuffle(arr) {
   return a;
 }
 
-export function parseQuestionsFromMarkdown(path, content, excludePatterns) {
+export function parseQuestionsFromMarkdown(path, content, excludePatterns, questionsRoot = "") {
+  const root = String(questionsRoot || "").replace(/^\/+|\/+$/g, "");
+  let relPath = path;
+  if (root) {
+    const prefix = root + "/";
+    if (path !== root && !path.startsWith(prefix)) return [];
+    relPath = path === root ? "" : path.slice(prefix.length);
+  }
+
   const base = path.split("/").pop() || path;
   const nameNoExt = base.replace(/\.md$/i, "");
   for (const p of excludePatterns || []) {
@@ -46,8 +54,11 @@ export function parseQuestionsFromMarkdown(path, content, excludePatterns) {
     }
   }
 
-  const parts = path.split("/");
-  const moduleName = parts.length > 1 ? parts[0] : "根目录";
+  // 模块名：题库根下的第一级目录（如 八股/JVM/xx.md → JVM）
+  const parts = (relPath || path).split("/").filter(Boolean);
+  const moduleName = parts.length > 1 ? parts[0] : (parts[0] ? "根目录" : "根目录");
+  // 题 ID 用相对路径，搬家后仍能对上旧进度
+  const idPath = relPath || path;
   const lines = content.split(/\r?\n/);
   const headingRe = /^###\s+Q(\d+)\s*[\.、．]?\s*(.*)$/;
   const questions = [];
@@ -58,7 +69,7 @@ export function parseQuestionsFromMarkdown(path, content, excludePatterns) {
     const answer = current.answerLines.join("\n").trim();
     const question = current.question.trim();
     if (question) {
-      const rawId = `${path}#Q${current.num}:${question}`;
+      const rawId = `${idPath}#Q${current.num}:${question}`;
       questions.push({
         id: hashId(rawId),
         num: current.num,

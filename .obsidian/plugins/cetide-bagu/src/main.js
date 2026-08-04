@@ -113,21 +113,33 @@ export default class CetideBaguPlugin extends Plugin {
     await this.ensureDb();
     const files = this.app.vault.getMarkdownFiles();
     const exclude = this.settings.excludePatterns || [];
+    const root = String(this.settings.questionsRoot || "八股")
+      .replace(/^\/+|\/+$/g, "");
     const all = [];
     for (const f of files) {
       if (f.path.startsWith(".obsidian/") || f.path.startsWith(".bagu/"))
         continue;
+      if (root) {
+        const prefix = root + "/";
+        if (f.path !== root && !f.path.startsWith(prefix)) continue;
+      }
       try {
         // 用 read 而非 cachedRead，避免改完笔记仍读到旧缓存
         const content = await this.app.vault.read(f);
         all.push(
-          ...parseQuestionsFromMarkdown(f.path, content, exclude)
+          ...parseQuestionsFromMarkdown(f.path, content, exclude, root)
         );
       } catch (_) {}
     }
     await this.db.upsertQuestions(all);
     await this.db.persist(true);
-    if (notice) new Notice(`已同步 ${all.length} 题到 SQLite`);
+    if (notice) {
+      new Notice(
+        root
+          ? `已从「${root}」同步 ${all.length} 题到 SQLite`
+          : `已同步 ${all.length} 题到 SQLite`
+      );
+    }
     return all.length;
   }
 
