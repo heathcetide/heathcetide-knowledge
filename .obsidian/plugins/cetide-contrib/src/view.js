@@ -48,52 +48,86 @@ export class ContribView extends ItemView {
     const streak = computeStreak(store);
 
     const header = root.createDiv({ cls: "contrib-header" });
-    header.createEl("h2", { text: "写作贡献" });
+    const titleWrap = header.createDiv({ cls: "contrib-title-wrap" });
+    titleWrap.createEl("h2", { text: "写作贡献" });
+    titleWrap.createDiv({
+      cls: "contrib-subtitle",
+      text: "文档数 · 字数 · 每日编辑热力图",
+    });
     const actions = header.createDiv({ cls: "contrib-actions" });
+
+    const runAction = async (btn, busyText, idleText, fn) => {
+      btn.disabled = true;
+      btn.setText(busyText);
+      try {
+        await fn();
+      } finally {
+        btn.disabled = false;
+        btn.setText(idleText);
+      }
+    };
+
+    const btnRefresh = actions.createEl("button", {
+      cls: "mod-cta contrib-btn",
+      text: "刷新",
+    });
+    btnRefresh.onclick = () =>
+      runAction(btnRefresh, "刷新中…", "刷新", async () => {
+        try {
+          await this.plugin.refreshStats();
+          new Notice("统计已刷新");
+          await this.render();
+        } catch (e) {
+          new Notice(`刷新失败：${e.message || e}`);
+        }
+      });
+
     const btnScan = actions.createEl("button", {
-      cls: "mod-cta",
+      cls: "contrib-btn",
       text: "全库扫描",
     });
-    btnScan.onclick = async () => {
-      btnScan.disabled = true;
-      btnScan.setText("扫描中…");
-      try {
-        await this.plugin.fullScan(true);
-        new Notice("全库扫描完成");
-        await this.render();
-      } catch (e) {
-        new Notice(`扫描失败：${e.message || e}`);
-      } finally {
-        btnScan.disabled = false;
-        btnScan.setText("全库扫描");
-      }
-    };
-    const btnGit = actions.createEl("button", { text: "Git 回填" });
-    btnGit.onclick = async () => {
-      btnGit.disabled = true;
-      btnGit.setText("回填中…");
-      try {
-        const n = await this.plugin.backfillGit(true);
-        new Notice(n != null ? `Git 回填完成（${n} 天有记录）` : "非 Git 仓库或回填失败");
-        await this.render();
-      } catch (e) {
-        new Notice(`回填失败：${e.message || e}`);
-      } finally {
-        btnGit.disabled = false;
-        btnGit.setText("Git 回填");
-      }
-    };
-    const btnRefresh = actions.createEl("button", { text: "刷新" });
-    btnRefresh.onclick = () => this.render();
+    btnScan.onclick = () =>
+      runAction(btnScan, "扫描中…", "全库扫描", async () => {
+        try {
+          await this.plugin.fullScan(false);
+          new Notice("全库扫描完成");
+          await this.render();
+        } catch (e) {
+          new Notice(`扫描失败：${e.message || e}`);
+        }
+      });
+
+    const btnGit = actions.createEl("button", {
+      cls: "contrib-btn",
+      text: "Git 回填",
+    });
+    btnGit.onclick = () =>
+      runAction(btnGit, "回填中…", "Git 回填", async () => {
+        try {
+          const n = await this.plugin.backfillGit(true);
+          new Notice(
+            n != null ? `Git 回填完成（${n} 天有记录）` : "非 Git 仓库或回填失败"
+          );
+          await this.render();
+        } catch (e) {
+          new Notice(`回填失败：${e.message || e}`);
+        }
+      });
 
     const cards = root.createDiv({ cls: "contrib-cards" });
     const mk = (label, value, sub) => {
       const c = cards.createDiv({ cls: "contrib-card" });
-      c.createDiv({ cls: "contrib-card-value", text: String(value) });
       c.createDiv({ cls: "contrib-card-label", text: label });
+      c.createDiv({ cls: "contrib-card-value", text: String(value) });
       if (sub) c.createDiv({ cls: "contrib-card-sub", text: sub });
     };
-    mk("文档数", formatNum(snap.docs), snap.scannedAt ? `扫描于 ${snap.scannedAt.slice(0, 16).replace("T", " ")}` : "尚未扫描");
+    mk(
+      "文档数",
+      formatNum(snap.docs),
+      snap.scannedAt
+        ? `扫描于 ${snap.scannedAt.slice(0, 16).replace("T", " ")}`
+        : "尚未扫描"
+    );
     mk("总字数", formatNum(snap.chars), `约 ${formatNum(snap.words || 0)} 英文词`);
     mk(
       "今日",
@@ -102,11 +136,11 @@ export class ContribView extends ItemView {
     );
     mk("连续写作", `${streak} 天`, streak ? "含今日有贡献" : "今天还没写");
 
-    const heat = root.createDiv({ cls: "contrib-section" });
+    const heat = root.createDiv({ cls: "contrib-section contrib-panel" });
     const series = heatmapSeries(store, settings.heatmapWeeks || 53);
     renderContribHeatmap(heat, series, settings.heatmapWeeks || 53);
 
-    const meta = root.createDiv({ cls: "contrib-meta" });
+    const meta = heat.createDiv({ cls: "contrib-meta" });
     if (store.gitBackfilledAt) {
       meta.createSpan({
         text: `Git 回填：${store.gitBackfilledAt.slice(0, 16).replace("T", " ")}`,
@@ -120,7 +154,7 @@ export class ContribView extends ItemView {
       (a, b) => b[1].chars - a[1].chars
     );
     if (folders.length) {
-      const sec = root.createDiv({ cls: "contrib-section" });
+      const sec = root.createDiv({ cls: "contrib-section contrib-panel" });
       sec.createEl("h3", { text: "目录字数分布" });
       const list = sec.createDiv({ cls: "contrib-folder-list" });
       const maxChars = Math.max(1, ...folders.map(([, v]) => v.chars));
@@ -139,7 +173,7 @@ export class ContribView extends ItemView {
 
     // Top files
     const tops = topActiveFiles(store, settings.topFiles || 10);
-    const topSec = root.createDiv({ cls: "contrib-section" });
+    const topSec = root.createDiv({ cls: "contrib-section contrib-panel" });
     topSec.createEl("h3", { text: "活跃文件" });
     if (!tops.length) {
       topSec.createDiv({
@@ -157,7 +191,7 @@ export class ContribView extends ItemView {
         };
         li.createSpan({
           cls: "contrib-top-meta",
-          text: `  编辑 ${f.edits}${f.creates ? ` · 新建 ${f.creates}` : ""}`,
+          text: `编辑 ${f.edits}${f.creates ? ` · 新建 ${f.creates}` : ""}`,
         });
       }
     }

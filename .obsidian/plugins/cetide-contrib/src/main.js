@@ -123,6 +123,26 @@ export default class CetideContribPlugin extends Plugin {
     }
   }
 
+  /** 立刻结算防抖中的编辑，再全库扫描字数/文档数 */
+  async refreshStats () {
+    await this.flushPendingEdits();
+    await this.fullScan(false);
+  }
+
+  async flushPendingEdits () {
+    const paths = [...this._editTimers.keys()];
+    for (const path of paths) {
+      const tid = this._editTimers.get(path);
+      if (tid) window.clearTimeout(tid);
+      this._editTimers.delete(path);
+      try {
+        await this.commitEdit(path);
+      } catch (e) {
+        console.warn("[cetide-contrib] flush", path, e);
+      }
+    }
+  }
+
   async activateView () {
     const { workspace } = this.app;
     const existing = workspace.getLeavesOfType(VIEW_TYPE_CONTRIB);

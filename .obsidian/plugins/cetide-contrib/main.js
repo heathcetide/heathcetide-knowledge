@@ -369,23 +369,46 @@ var import_obsidian = require("obsidian");
 // src/charts.js
 function renderContribHeatmap(container, dayCounts, weeks = 53, tooltipFn) {
   container.empty();
+  document.querySelectorAll(".contrib-heat-tooltip").forEach((el) => el.remove());
   container.createDiv({ cls: "contrib-chart-title", text: "\u5199\u4F5C\u8D21\u732E\u56FE\u8C31" });
   const wrap = container.createDiv({ cls: "contrib-heatmap-wrap" });
-  const tip = container.createDiv({ cls: "contrib-heat-tooltip" });
+  const tip = document.body.createDiv({ cls: "contrib-heat-tooltip" });
   tip.style.display = "none";
+  const hideTip = () => {
+    tip.style.display = "none";
+  };
+  const placeTip = (ev, text) => {
+    tip.style.display = "block";
+    tip.setText(text);
+    tip.style.left = "0px";
+    tip.style.top = "0px";
+    const tw = tip.offsetWidth || 160;
+    const th = tip.offsetHeight || 28;
+    const pad = 10;
+    let left = ev.clientX + 14;
+    let top = ev.clientY + 16;
+    if (left + tw + pad > window.innerWidth) {
+      left = Math.max(pad, ev.clientX - tw - 12);
+    }
+    if (top + th + pad > window.innerHeight) {
+      top = Math.max(pad, ev.clientY - th - 12);
+    }
+    tip.style.left = `${left}px`;
+    tip.style.top = `${top}px`;
+  };
   const map = new Map((dayCounts || []).map((d) => [d.date, d]));
   const today = /* @__PURE__ */ new Date();
   today.setHours(0, 0, 0, 0);
   const start = new Date(today);
   start.setDate(start.getDate() - (weeks * 7 - 1));
   start.setDate(start.getDate() - start.getDay());
-  const cell = 11;
+  const cell = 12;
   const gap = 3;
   const labelW = 28;
-  const monthsH = 16;
+  const monthsH = 18;
   const cols = Math.ceil((today - start) / 864e5 / 7) + 1;
   const W = labelW + cols * (cell + gap) + 8;
-  const H = monthsH + 7 * (cell + gap) + 22;
+  const H = monthsH + 7 * (cell + gap) + 24;
   const max = Math.max(1, ...[...map.values()].map((d) => d.count || 0));
   const levels = (n) => {
     if (!n) return 0;
@@ -447,7 +470,7 @@ function renderContribHeatmap(container, dayCounts, weeks = 53, tooltipFn) {
       lastMonth = cursor.getMonth();
       const mt = document.createElementNS(ns, "text");
       mt.setAttribute("x", String(labelW + col * (cell + gap)));
-      mt.setAttribute("y", "10");
+      mt.setAttribute("y", "12");
       mt.setAttribute("font-size", "9");
       mt.setAttribute("fill", "currentColor");
       mt.setAttribute("opacity", "0.55");
@@ -467,21 +490,9 @@ function renderContribHeatmap(container, dayCounts, weeks = 53, tooltipFn) {
     rect.setAttribute("height", String(cell));
     rect.setAttribute("rx", "2");
     rect.style.cursor = "pointer";
-    rect.addEventListener("mouseenter", (ev) => {
-      tip.style.display = "block";
-      tip.setText(tipText(item));
-      const wr = wrap.getBoundingClientRect();
-      tip.style.left = `${ev.clientX - wr.left + 12}px`;
-      tip.style.top = `${ev.clientY - wr.top - 28}px`;
-    });
-    rect.addEventListener("mousemove", (ev) => {
-      const wr = wrap.getBoundingClientRect();
-      tip.style.left = `${ev.clientX - wr.left + 12}px`;
-      tip.style.top = `${ev.clientY - wr.top - 28}px`;
-    });
-    rect.addEventListener("mouseleave", () => {
-      tip.style.display = "none";
-    });
+    rect.addEventListener("mouseenter", (ev) => placeTip(ev, tipText(item)));
+    rect.addEventListener("mousemove", (ev) => placeTip(ev, tipText(item)));
+    rect.addEventListener("mouseleave", hideTip);
     svg.appendChild(rect);
     cursor.setDate(cursor.getDate() + 1);
   }
@@ -550,51 +561,76 @@ var ContribView = class extends import_obsidian.ItemView {
     const today = store.days[todayKey()] || {};
     const streak = computeStreak(store);
     const header = root.createDiv({ cls: "contrib-header" });
-    header.createEl("h2", { text: "\u5199\u4F5C\u8D21\u732E" });
+    const titleWrap = header.createDiv({ cls: "contrib-title-wrap" });
+    titleWrap.createEl("h2", { text: "\u5199\u4F5C\u8D21\u732E" });
+    titleWrap.createDiv({
+      cls: "contrib-subtitle",
+      text: "\u6587\u6863\u6570 \xB7 \u5B57\u6570 \xB7 \u6BCF\u65E5\u7F16\u8F91\u70ED\u529B\u56FE"
+    });
     const actions = header.createDiv({ cls: "contrib-actions" });
+    const runAction = async (btn, busyText, idleText, fn) => {
+      btn.disabled = true;
+      btn.setText(busyText);
+      try {
+        await fn();
+      } finally {
+        btn.disabled = false;
+        btn.setText(idleText);
+      }
+    };
+    const btnRefresh = actions.createEl("button", {
+      cls: "mod-cta contrib-btn",
+      text: "\u5237\u65B0"
+    });
+    btnRefresh.onclick = () => runAction(btnRefresh, "\u5237\u65B0\u4E2D\u2026", "\u5237\u65B0", async () => {
+      try {
+        await this.plugin.refreshStats();
+        new import_obsidian.Notice("\u7EDF\u8BA1\u5DF2\u5237\u65B0");
+        await this.render();
+      } catch (e) {
+        new import_obsidian.Notice(`\u5237\u65B0\u5931\u8D25\uFF1A${e.message || e}`);
+      }
+    });
     const btnScan = actions.createEl("button", {
-      cls: "mod-cta",
+      cls: "contrib-btn",
       text: "\u5168\u5E93\u626B\u63CF"
     });
-    btnScan.onclick = async () => {
-      btnScan.disabled = true;
-      btnScan.setText("\u626B\u63CF\u4E2D\u2026");
+    btnScan.onclick = () => runAction(btnScan, "\u626B\u63CF\u4E2D\u2026", "\u5168\u5E93\u626B\u63CF", async () => {
       try {
-        await this.plugin.fullScan(true);
+        await this.plugin.fullScan(false);
         new import_obsidian.Notice("\u5168\u5E93\u626B\u63CF\u5B8C\u6210");
         await this.render();
       } catch (e) {
         new import_obsidian.Notice(`\u626B\u63CF\u5931\u8D25\uFF1A${e.message || e}`);
-      } finally {
-        btnScan.disabled = false;
-        btnScan.setText("\u5168\u5E93\u626B\u63CF");
       }
-    };
-    const btnGit = actions.createEl("button", { text: "Git \u56DE\u586B" });
-    btnGit.onclick = async () => {
-      btnGit.disabled = true;
-      btnGit.setText("\u56DE\u586B\u4E2D\u2026");
+    });
+    const btnGit = actions.createEl("button", {
+      cls: "contrib-btn",
+      text: "Git \u56DE\u586B"
+    });
+    btnGit.onclick = () => runAction(btnGit, "\u56DE\u586B\u4E2D\u2026", "Git \u56DE\u586B", async () => {
       try {
         const n = await this.plugin.backfillGit(true);
-        new import_obsidian.Notice(n != null ? `Git \u56DE\u586B\u5B8C\u6210\uFF08${n} \u5929\u6709\u8BB0\u5F55\uFF09` : "\u975E Git \u4ED3\u5E93\u6216\u56DE\u586B\u5931\u8D25");
+        new import_obsidian.Notice(
+          n != null ? `Git \u56DE\u586B\u5B8C\u6210\uFF08${n} \u5929\u6709\u8BB0\u5F55\uFF09` : "\u975E Git \u4ED3\u5E93\u6216\u56DE\u586B\u5931\u8D25"
+        );
         await this.render();
       } catch (e) {
         new import_obsidian.Notice(`\u56DE\u586B\u5931\u8D25\uFF1A${e.message || e}`);
-      } finally {
-        btnGit.disabled = false;
-        btnGit.setText("Git \u56DE\u586B");
       }
-    };
-    const btnRefresh = actions.createEl("button", { text: "\u5237\u65B0" });
-    btnRefresh.onclick = () => this.render();
+    });
     const cards = root.createDiv({ cls: "contrib-cards" });
     const mk = (label, value, sub) => {
       const c = cards.createDiv({ cls: "contrib-card" });
-      c.createDiv({ cls: "contrib-card-value", text: String(value) });
       c.createDiv({ cls: "contrib-card-label", text: label });
+      c.createDiv({ cls: "contrib-card-value", text: String(value) });
       if (sub) c.createDiv({ cls: "contrib-card-sub", text: sub });
     };
-    mk("\u6587\u6863\u6570", formatNum(snap.docs), snap.scannedAt ? `\u626B\u63CF\u4E8E ${snap.scannedAt.slice(0, 16).replace("T", " ")}` : "\u5C1A\u672A\u626B\u63CF");
+    mk(
+      "\u6587\u6863\u6570",
+      formatNum(snap.docs),
+      snap.scannedAt ? `\u626B\u63CF\u4E8E ${snap.scannedAt.slice(0, 16).replace("T", " ")}` : "\u5C1A\u672A\u626B\u63CF"
+    );
     mk("\u603B\u5B57\u6570", formatNum(snap.chars), `\u7EA6 ${formatNum(snap.words || 0)} \u82F1\u6587\u8BCD`);
     mk(
       "\u4ECA\u65E5",
@@ -602,10 +638,10 @@ var ContribView = class extends import_obsidian.ItemView {
       `\u5B57\u6570 ${(Number(today.charsDelta) || 0) > 0 ? "+" : ""}${Number(today.charsDelta) || 0}`
     );
     mk("\u8FDE\u7EED\u5199\u4F5C", `${streak} \u5929`, streak ? "\u542B\u4ECA\u65E5\u6709\u8D21\u732E" : "\u4ECA\u5929\u8FD8\u6CA1\u5199");
-    const heat = root.createDiv({ cls: "contrib-section" });
+    const heat = root.createDiv({ cls: "contrib-section contrib-panel" });
     const series = heatmapSeries(store, settings.heatmapWeeks || 53);
     renderContribHeatmap(heat, series, settings.heatmapWeeks || 53);
-    const meta = root.createDiv({ cls: "contrib-meta" });
+    const meta = heat.createDiv({ cls: "contrib-meta" });
     if (store.gitBackfilledAt) {
       meta.createSpan({
         text: `Git \u56DE\u586B\uFF1A${store.gitBackfilledAt.slice(0, 16).replace("T", " ")}`
@@ -617,7 +653,7 @@ var ContribView = class extends import_obsidian.ItemView {
       (a, b) => b[1].chars - a[1].chars
     );
     if (folders.length) {
-      const sec = root.createDiv({ cls: "contrib-section" });
+      const sec = root.createDiv({ cls: "contrib-section contrib-panel" });
       sec.createEl("h3", { text: "\u76EE\u5F55\u5B57\u6570\u5206\u5E03" });
       const list = sec.createDiv({ cls: "contrib-folder-list" });
       const maxChars = Math.max(1, ...folders.map(([, v]) => v.chars));
@@ -634,7 +670,7 @@ var ContribView = class extends import_obsidian.ItemView {
       }
     }
     const tops = topActiveFiles(store, settings.topFiles || 10);
-    const topSec = root.createDiv({ cls: "contrib-section" });
+    const topSec = root.createDiv({ cls: "contrib-section contrib-panel" });
     topSec.createEl("h3", { text: "\u6D3B\u8DC3\u6587\u4EF6" });
     if (!tops.length) {
       topSec.createDiv({
@@ -652,7 +688,7 @@ var ContribView = class extends import_obsidian.ItemView {
         };
         li.createSpan({
           cls: "contrib-top-meta",
-          text: `  \u7F16\u8F91 ${f.edits}${f.creates ? ` \xB7 \u65B0\u5EFA ${f.creates}` : ""}`
+          text: `\u7F16\u8F91 ${f.edits}${f.creates ? ` \xB7 \u65B0\u5EFA ${f.creates}` : ""}`
         });
       }
     }
@@ -805,6 +841,24 @@ var CetideContribPlugin = class extends import_obsidian2.Plugin {
     for (const v of this._views) {
       v.render?.().catch?.(() => {
       });
+    }
+  }
+  /** 立刻结算防抖中的编辑，再全库扫描字数/文档数 */
+  async refreshStats() {
+    await this.flushPendingEdits();
+    await this.fullScan(false);
+  }
+  async flushPendingEdits() {
+    const paths = [...this._editTimers.keys()];
+    for (const path of paths) {
+      const tid = this._editTimers.get(path);
+      if (tid) window.clearTimeout(tid);
+      this._editTimers.delete(path);
+      try {
+        await this.commitEdit(path);
+      } catch (e) {
+        console.warn("[cetide-contrib] flush", path, e);
+      }
     }
   }
   async activateView() {

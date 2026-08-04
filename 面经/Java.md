@@ -1,0 +1,2568 @@
+8.4
+
+先自我介绍+讲项目  
+1.项目中有难度的点  
+2.介绍一下责任链模型  
+3.用xxl-job扫表做定时任务不太好，可能有更好的方案  
+4.消息幂等怎么实现的  
+5.Java基本数据类型  
+6.string，stringbuilder，stringbuffer  
+7.stringbuilder和stringbuffer怎么完成字符串拼接的，怎么完成扩容的  
+8.tcp和udp区别，tcp为什么是安全的  
+9.介绍常见的集合和实现类  
+10.arraylist和linkedlist有什么区别  
+11.arraylist的扩容机制  
+12.arraylist为什么能实现随机查找  
+13.redis的数据类型和使用场景  
+14.介绍一下Java的锁  
+15.synchronized和lock有什么区别  
+16.非聚簇索引和聚簇索引的区别  
+17.非主键索引的查询过程  
+18.线程池运行流程  
+19.算法：合并两个有序数组，并去重，要求O(m+n)
+
+1. 结合现在的一些场景介绍一下你的登录功能  
+    2.你的点赞功能是如何实现的  
+    2.1 你如何处理同时到来的多个点赞消息  
+    2.2 谈谈具体是如何合并多个点赞消息的  
+    3.你的热帖排行功能是如何实现的  
+    4.你是如何处理秒杀场景的  
+    4.1 展开讲讲你的redis lua脚本的具体实现，库存扣减和创建订单的顺序？超卖问题  
+    4.2 你提到还使用了redisson分布式锁，结合具体场景讲讲  
+    4.3 看门狗机制
+2. 你使用了MQ，讲讲它是如何保证消息的可靠传输的  
+    5.1 你上面提到的都是单机模式，分布式下怎么实现  
+    5.2 1个topic 5个partition 10台机器，是否10台机器都能进行消费
+3. 你的关注功能是怎么实现的  
+    6.1如果A取关了B，这时候你的数据库中会有哪些变化  
+    6.2 如果由于一些原因你的以上操作只完成了一半怎么解决  
+    7.讲讲缓存穿透、缓存雪崩  
+    7.1你所说的布隆过滤器只能防止一些可识别的非法请求，假设攻击者获取到合法的查询请求再进行大量请求呢  
+    8.讲讲用户购买商品的整个流程  
+    8.1你是否做了支付功能，如果没有讲讲你了解到的一些支付实现  
+    9.事务的ACID属性分别是什么  
+    10.事务的四大隔离级别，mysql默认是什么级别  
+    11.mysql使用的是什么数据结构，为什么不使用b树  
+    11.1 A B C三个字段，两个联合查询where A where B，哪个走索引  
+    12.讲讲泛型  
+    13.红黑树的特点，java中有哪些应用  
+    14.redis是单进程单线程的吗，有没有了解过多线程的redis  
+    15.讲下java中的浅拷贝和深拷贝  
+    16.sleep和wait的区别  
+    手撕二叉树路径和，12345输出为124+125+13=263  
+    准备的很晚，各方面都不是很熟，但是面试体验很好，大半段都在针对简历结合具体场景提问。
+
+8.5
+
+[#实习进度记录#](https://hibiscus.fit/creation/subject/62982cc3da15490e9e6420e7c18b9512) java后端开发，4.15号二面核心本地商业-业务研发平台  
+自我介绍；  
+目前还有课么？一周可以到岗几天？可以实习多久？  
+你研究生学的是人工智能相关的对吧，讲讲你理解的人工智能  
+你刚才说了transformer，你了解它的原理么？  
+什么是多头？  
+transformer能做什么内容？  
+你可以讲讲你的医学交叉做了什么内容。  
+这个其实就是RAG，追问，你了解RAG么？  
+你知道其中的rank么？  
+embedding，转成高维与低维有什么区别？  
+有用过什么向量数据库么？  
+prompt调优有什么技巧么？  
+如何选择大模型呢？  
+了解o1模型么？  
+你这个项目，是个练手的项目，为什么想到学这个项目呢？  
+讲讲布隆过滤器误判  
+你说的都是预防，如果已经打到数据库怎么办？  
+进程之间有哪些通信方式？  
+如何查看当前cpu占用情况？  
+讲讲常见的Linux命令吧。  
+如果我想要去日志里查error，怎么写命令？  
+讲讲集合吧那，ArrayList，for循环remove会不会出现问题？  
+讲讲concurrentMap和redis什么时候用？  
+深分页问题怎么解决？  
+消息队列了解么？  
+了解ES search么？  
+手撕，K个一组链表反转。  
+平时如何学习新技术？  
+你觉得自己有哪些缺点？  
+你未来的职业规划？  
+反问。
+
+1 自我介绍  
+2 接口和抽象类  
+3 反射机制  
+4 用过那些集合  
+5 arraylist和linkedlist的区别  
+6 hashset和linkedhashset的区别  
+7 linkedhashset的使用场景  
+8 arraylist的插入，扩容机制  
+9 如何创建线程  
+10 callable接口的使用  
+11 线程池的参数  
+12 线程池的工作原理  
+13 用过那些juc工具类  
+14 syc锁和lock锁的区别  
+15 sql如何查询学生成绩表的第七名  
+16 sql如何查询男女数目  
+17 mysql行级锁  
+18 mysql慢查询定位和优化  
+19 mysql行级锁  
+20 redis缓存雪崩  
+21 问项目（黑马点评）  
+22 项目中的难点和解决办法  
+23 问优惠券秒杀如何实现的  
+24 springboot的自动装配原理  
+25 怎么用的maven  
+26 git提交具体命令  
+27反问  
+更新：二面  
+1 为什么学java，有没有共同开发项目经验  
+2 未来的学习计划  
+3 问项目，大概问了项目的来源，为什么要选这个项 目，遇到过那些难点，怎么解决的，有没有想过改进项目  
+4 问ai相关的，用不用ai，怎么用ai，对ai有什么看法，搭建过ai模型吗  
+5 未来的职业规划  
+6 聊天问校园相关的  
+7 反问  
+大概就是聊天居多，技术涉及比较少
+
+# 北京领雁科技股份有限公司 java实习 （银行驻场外包）2025/2/23
+
+1. 介绍下平时用那些集合
+2. ArrayList和LinkedList 区别？
+3. 看你简历提到了多线程，你一般什么时候使用多线线程？
+
+答：先说一下使用多线程的目的。然后介绍项目中怎么用的（数据库ES库同步，以及批量操作，同时说业务中遇到的问题）。
+
+4. 你对线程池的了解？
+
+答： 核心参数， 拒绝策略，工作队列，整个线程池的工作流程。
+
+2. 了解的数据库Mysql Redis ES
+3. grouby distinct 的区别
+4. sql的执行顺序
+5. 索引的作用？
+6. 所有的表都适合加索引？
+7. 了解那些设计模式（不知道）？答：单例，策略，责任链，之前学过现在不太清楚了。
+8. redis 用过那些数据类型？
+
+答： 介绍一下应用场景，比如说解决session共享问题，用redis存储token,用token， Hash类型存用户信息等。
+
+9 别人拦截到token，伪造请求，请求服务怎么解决。
+
+答： 加密JWT什么的（我感觉不对）， 他说刷新token。
+
+![](https://cdn.nlark.com/yuque/0/2025/png/39189746/1744721391327-2c053f13-7201-4475-b8c6-2afd54a5da0d.png)
+
+10 有实习过吗？ 没有
+
+11 注册中心的了解。
+
+nacos 作为注册中心的优点（统一管理，版本控制），同时说明没有本地配置的缺点。
+
+12 git 冲突怎么解决。
+
+答： 我说了个应用场景：我和面试官，早上从远程仓库拉代码进行开发，晚上我提交远程仓库报错，原因说面试官更早的提交导致，我拉的代码和远程仓库不一致。解决就是在拉一次下来，再去提交。
+
+13 加入公司想得到什么。
+
+14 反问
+
+招实习生具体干什么的？
+
+面试官：完成一些简单的开发，跟着一起熟悉项目需求，开发文档 。
+
+主要业务是什么。
+
+面试管：在银行工作，做银行app 整体的配置项目。（不太懂继续问），在使用app的时候，会有图xxx,他们是怎么布局的，点击跳转到对应的连接上 。是由我们的系统去控制（还是不太了解，我问是前端吗）。说我们提供配置信息，具体的话是由客户端拿到这个连接 去跳转，我们做配置。是一个运营类的系统。（我现在还不太了解）
+
+还有其他二面吗？什么时候。
+
+Sql 执行的顺序
+
+|   |   |   |
+|---|---|---|
+|步骤|子句|作用|
+|1|**FROM**|确定数据来源（表、子查询、连接等）。|
+|2|**WHERE**|过滤行（基于条件，在分组前过滤）。|
+|3|**GROUP BY**|将数据按指定列分组。|
+|4|**HAVING**|过滤分组后的结果（基于聚合值，如 `SUM`, `COUNT`）。|
+|5|**SELECT**|选择最终输出的列，并计算表达式或聚合函数。|
+|6|**DISTINCT**|去重（移除重复行）。|
+|7|**ORDER BY**|对结果排序。|
+|8|**LIMIT / OFFSET**|限制返回的行数或跳过指定行（如分页）。|
+
+- JOIN(如果有　join　操作)　在FROM子句之后执行。
+
+## 总结
+
+面试管的提问都是发散性的，不会直接问xxx是什么？,都是问一些你那里用了，怎么用的，在回答的过程中尽管只问一个简单的小问题，也不要只回答这一点点，可能的回答自己所知道的知识。在回答中提到涉及的知识，面试官又会去追问。所以说我们回答面试管某一个问题时候，回答该问题的时候尽量发散回答，最好结合应用场景去回答。
+
+技术面结束，10分钟不到，HR通知面试通过，也没有后续面试，我追问什么时候入职，现在还没有回复。
+
+# 上海lm科技一面 2025/2/22
+
+1.ES的具体操作
+
+2.Mysql和ES库同步
+
+3.自定义注解
+
+4.鉴权
+
+5.git的使用
+
+6.和前端对接
+
+7.对象存储
+
+## 总结
+
+不问八股，只问实操，想直接找干活的。
+
+自己对于一些不是crud的操作也应该更加熟练,特别是通用的，不是说，用到了早copy,而是非常熟练。
+
+# 上海宸夕医疗 2025/2/24
+
+1. 项目遇到的bug，怎么解决的
+
+我举的例子，sentinel，限流异常包括降级异常。
+
+2. java 的特点
+3. 继承和多态
+4. 定义接口默认的修饰词
+5. final的修饰词的作用
+6. 构造方法的作用
+7. 构造方法的特性  
+    答：与类同名 2. 没有返回类型 3.支持重载
+8. ==和equals的区别
+
+- `==`
+
+- 比较对象时，比较对象的地址是否相同
+- 比较基本类型时，比较值是否相同
+
+- `equals` 方法
+
+- 继承子Object类，也就是只有对象才有该方法
+- 默认是比较对象的地址是否相同
+- 比较对象的内容是否相同，通常如果我们自定义的对象，要想将对象的内容一样看相同，要重写equals方法
+- 有的Java对象也提供了equals的重写，比如String
+
+```
+    String s1 = new String("hello world");
+       String s2 = new String("hello world");
+       System.out.println(s1 == s2); //false
+       System.out.println(s1.equals(s2));//true
+ 
+       String s3 = "hello";
+       String s4 = "hello";
+       System.out.println(s3 == s4); //true
+       System.out.println(s3.equals(s4)); //true
+```
+
+- 为什么 s1 == s2 flase， 因为地址不一样
+- 为什么s1.equals（s2）true, 不是说equals默认比较地址是否相同吗？明明地址不一样为啥还是相同呢？这是因为String已经重写了equals()方法
+- ![](images/上海宸夕医疗.assets/image-20250224223315393.png "null")
+- 为什么 s3 == s4 是true。难道说他俩地址相同？确实是这样。因为字符串常量池的存在，在创建字符串时，先判断缓冲池中是否有一样的字符串，如果有就直接将其地址赋值到要创建的变量上，避免字符串额外的创建。如果使用new 方式来创建的话，即使常量池中存在也会创建一个新的对象。
+
+10. 线程的状态
+11. SpringCloud的特点
+12. 怎么远程调用
+13. Spring AOP的理解什么是AOP:AOP是一种面向切面编程的思想，具体来说就是将与具体业务无关但影响多个对象的公用的逻辑的代码抽取并封装一个可重用的代码块。来减少代码的冗余。具体的应用来说就是 权限校验，日志，事务。权限校验
+
+---
+
+权限校验怎么使用AOP,我们通过自定义注解，定义用户的身份，通过反射拿到注解的对象，判断其身份。 这是个公用的逻辑，然后我们将判断用户身份封装成一个AOP对象来用，代码如下首先定义权限注解
+
+```
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface AuthCheck {
+
+    /**
+     * 必须有某个角色
+     *
+     * @return
+     */
+    String mustRole() default "";
+
+}
+```
+
+使用的话，一下例子，管理员可以对用户信息进行修改（封禁）
+
+```
+ /**
+     * 更新用户
+     *
+     * @param userUpdateRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/update")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> updateUser(@RequestBody UserUpdateRequest userUpdateRequest,
+            HttpServletRequest request) {
+        if (userUpdateRequest == null || userUpdateRequest.getId() == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = new User();
+        BeanUtils.copyProperties(userUpdateRequest, user);
+        boolean result = userService.updateById(user);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return ResultUtils.success(true);
+    }
+```
+
+通过AOP 来对使用@AuthCheck注解的方法进行代理，所代理的增强方法就是用户权限的校验。
+
+```
+@Aspect
+@Component
+public class AuthInterceptor {
+
+    @Resource
+    private UserService userService;
+
+    /**
+     * 执行拦截
+     *
+     * @param joinPoint
+     * @param authCheck
+     * @return
+     */
+    @Around("@annotation(authCheck)")
+    public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
+        String mustRole = authCheck.mustRole();
+        RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+        HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+        // 当前登录用户
+        User loginUser = userService.getLoginUser(request);
+        UserRoleEnum mustRoleEnum = UserRoleEnum.getEnumByValue(mustRole);
+        // 不需要权限，放行
+        if (mustRoleEnum == null) {
+            return joinPoint.proceed();
+        }
+        // 必须有该权限才通过
+        UserRoleEnum userRoleEnum = UserRoleEnum.getEnumByValue(loginUser.getUserRole());
+        if (userRoleEnum == null) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+        }
+        // 如果被封号，直接拒绝
+        if (UserRoleEnum.BAN.equals(userRoleEnum)) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+        }
+        // 必须有管理员权限
+        if (UserRoleEnum.ADMIN.equals(mustRoleEnum)) {
+            // 用户没有管理员权限，拒绝
+            if (!UserRoleEnum.ADMIN.equals(userRoleEnum)) {
+                throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+            }
+        }
+        // 通过权限校验，放行
+        return joinPoint.proceed();
+    }
+}
+```
+
+tips: `@Around("@annotation(authCheck)") 和 @Around("@annotation(AuthCheck)")`的区别@Around("@annotation(authCheck)"),Spring AOP 自动将方法上的 `@AuthCheck` 注解注入到 `doInterceptor authCheck` 参数中。
+
+```
+@Around("@annotation(authCheck)")
+    public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
+            String mustRole = authCheck.mustRole();
+    }
+```
+
+@Around("@annotation(AuthCheck)")`就需要我们使用joinPoint 自己去获得注解的内容
+
+```
+@Around("@annotation(AuthCheck)")
+    public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
+        
+            String mustRole = authCheck.mustRole();
+            // 获取方法签名
+            MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+            // 获取方法对象
+            Method method = signature.getMethod();
+            // 获取方法上的 AuthCheck 注解
+            AuthCheck authCheck = method.getAnnotation(AuthCheck.class);
+    }
+```
+
+以上就是权限校验使用AOP的全过程.
+
+---
+
+14. Tcp/IP协议
+15. 项目能支持多少QPS
+16. ES,hot-key的实现
+17. 分布式锁怎么用的
+18. 排序算法，快排，归并排序
+19. 反问 该职位是做什么，具体的业务是什么，技术栈是什么。
+
+## 总结
+
+多压测项目才真实，网络的知识要学一下，简单的算法也要学一下，比如说快排，二分等。
+
+# 同在科技笔试-2025/4/15
+
+1.MVC架构是什么？
+
+MVC架构将应用分为三部分：
+
+- Model：数据业务
+- View：视图
+- Controller：控制器
+
+他的工作流程：
+
+1. 用户通过视图进行交互（如点击按钮）
+2. 控制器响应用户请求，更新模型
+3. 模型更新刷新视图。
+
+2.default,private,punlic，protected
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+|**修饰符**|**当前类**|**同一包**|**不同包的子类**|**其他包**|
+|`private`|✅|❌|❌|❌|
+|`default`|✅|✅|❌|❌|
+|`protected`|✅|✅|✅|❌|
+|`public`|✅|✅|✅|✅|
+
+4.springboot 自动配置的原理
+
+@EnableAutoConfiguration
+
+该注解通过`@Import`导入了`AutoConfigurationImportSelector`类，这个类负责：
+
+1. 从`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`文件(Spring Boot 2.7+)或  
+    `META-INF/spring.factories`文件(旧版)中加载自动配置类
+
+实现自动装配
+
+## 总结
+
+第一次笔试，写着写着发现不对，笔试就直接写答案就行了，不用太注重逻辑，业务写不下，字写的不好看再多就是废话了。应该简洁，直接结论就行。
+
+# 智能思创一面-2025/4/17
+
+## 1. Java 的异常分类
+
+异常分为两类，一类**Error**,一类**Execption**。这两个类都是**Throwable**的子类，只有继承Throwable 的类才可以被throw或者catch
+
+Error: 表示严重的系统问题，通常与代码无关，应用程序一般无法处理：
+
+- `OutOfMemoryError`：内存不足
+- `StackOverflowError`：栈溢出
+- `VirtualMachineError`：虚拟机错误
+
+Execption： 程序可以处理的异常，分为两大类
+
+**检查型异常(Checked Exception)：**在编译时检查，必须被显示的捕获或者声明抛出，
+
+- 示例：
+
+- `IOException`：I/O操作异常
+- `SQLException`：数据库操作异常
+- `ClassNotFoundException`：类未找到
+- `FileNotFoundException`：文件未找到
+
+**非检查型异常(Unchecked Exception)**
+
+- 包括 `RuntimeException` 及其子类
+- 不强制要求捕获或声明
+- 示例：
+
+- `NullPointerException`：空指针异常
+- `ArrayIndexOutOfBoundsException`：数组越界
+- `ArithmeticException`：算术异常（如除零）
+- `IllegalArgumentException`：非法参数
+- `NumberFormatException`：数字格式错误
+
+异常的处理的关键字
+
+- `try`：尝试执行可能抛出异常的代码块
+- `catch`：捕获并处理特定类型的异常
+- `finally`：无论是否发生异常都会执行的代码块
+- `throw`：主动抛出一个异常
+- `throws`：声明方法可能抛出的异常
+
+自定义异常，比说说自定义业务异常，新增状态码
+
+```
+/**
+ * 自定义异常类
+
+ */
+public class BusinessException extends RuntimeException {
+
+    /**
+     * 错误码
+     */
+    private final int code;
+
+    public BusinessException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public BusinessException(ErrorCode errorCode) {
+        super(errorCode.getMessage());
+        this.code = errorCode.getCode();
+    }
+
+    public BusinessException(ErrorCode errorCode, String message) {
+        super(message);
+        this.code = errorCode.getCode();
+    }
+
+    public int getCode() {
+        return code;
+    }
+}
+```
+
+全局异常处理器
+
+```
+/**
+ * 全局异常处理器
+
+ */
+@RestControllerAdvice
+@Slf4j
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(BusinessException.class)
+    public BaseResponse<?> businessExceptionHandler(BusinessException e) {
+        log.error("BusinessException", e);
+        return ResultUtils.error(e.getCode(), e.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public BaseResponse<?> runtimeExceptionHandler(RuntimeException e) {
+        log.error("RuntimeException", e);
+        return ResultUtils.error(ErrorCode.SYSTEM_ERROR, "系统错误");
+    }
+}
+```
+
+具体使用的话，有限捕获特定的异常，比如说Sentinel的BlockExecption,包括限流异常，以及降级异常，所以就先捕获特定的异常。
+
+## 2. 2.深拷贝浅拷贝的区别和使用场景
+
+浅拷贝 (Shallow Copy)
+
+- 只复制对象本身和其基本类型字段
+- 对于引用类型字段，只复制引用地址而不复制引用的对象
+- 原始对象和拷贝对象共享引用类型的成员变量
+
+深拷贝 (Deep Copy)
+
+- 复制对象本身及其所有引用的对象
+- 创建一个完全独立的副本
+- 原始对象和拷贝对象不共享任何引用
+
+如何实现浅拷贝 Object.clone()
+
+```
+class Person implements Cloneable {
+    String name;
+    int age;
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone(); // 浅拷贝
+    }
+}
+```
+
+如何实现深拷贝
+
+递归clone，或者序列化
+
+```
+class Address implements Cloneable {
+    String city;
+    public Address(String city) { this.city = city; }
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone(); // 浅拷贝
+    }
+}
+
+class Person implements Cloneable {
+    String name;
+    int age;
+    Address address;
+
+    public Person(String name, int age, Address address) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Person cloned = (Person) super.clone();
+        cloned.address = (Address) address.clone(); // 深拷贝
+        return cloned;
+    }
+}
+
+```
+
+深拷贝和浅拷贝的应用场景：
+
+浅拷贝仅关注与复制，使用
+
+深拷贝关注，应用隔离
+
+## 3. 3.Java 注解的原理
+
+Java 注解（Annotation）是一种（标记）元数据，用于为代码提供额外的信息,不会直接影响代码的执行，但可以**通过反射机制**在运行时或编译时被读取和处理。
+
+1. 注解的定义
+
+注解通过 `@interface` 关键字定义，类似于接口的定义。注解可以包含元素（类似于方法），这些元素可以有默认值。
+
+通过元注解来规定注解使用的范围。元注解是用于定义其他注解的注解。Java 提供了以下几种元注解：
+
+- `**@Retention**`：指定注解的保留策略。
+
+- `RetentionPolicy.SOURCE`：注解仅在源码中保留，编译时丢弃。
+- `RetentionPolicy.CLASS`：注解在编译时保留，但运行时不可见（默认策略）。
+- `RetentionPolicy.RUNTIME`：注解在运行时保留，可以通过反射读取。
+
+- `**@Target**`：指定注解可以应用的目标元素。
+
+- `ElementType.TYPE`：类、接口、枚举。
+- `ElementType.METHOD`：方法。
+- `ElementType.FIELD`：字段。
+- `ElementType.PARAMETER`：参数。
+- 其他目标元素。
+
+- `**@Documented**`：指定注解是否包含在 Javadoc 中。
+- `**@Inherited**`：指定注解是否可以被继承。
+- `**@Repeatable**`：指定注解是否可以重复使用。
+
+```
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface MyAnnotation {
+    String value() default "";
+    int count() default 0;
+}
+```
+
+1. 注解的使用
+
+```
+@MyAnnotation(value = "example", count = 10)
+public class MyClass {
+    @MyAnnotation(count = 5)
+    public void myMethod() {
+        // 方法体
+    }
+}
+```
+
+1. 注解的处理机制
+
+- 编译时处理
+
+在编译阶段，通过注解处理器（Annotation Processor）读取和处理注解。注解处理器可以生成新的代码、资源文件，或者对代码进行静态检查。
+
+- 运行时处理
+
+在程序运行时，通过**反射机制**读取注解信息，并根据注解的内容执行相应的逻辑。
+
+使用 Java 反射 API（如 `Class`、`Method`、`Field` 等）获取注解信息。
+
+```
+Class<?> clazz = MyClass.class;
+MyAnnotation annotation = clazz.getAnnotation(MyAnnotation.class);
+if (annotation != null) {
+    System.out.println("Value: " + annotation.value());
+    System.out.println("Count: " + annotation.count());
+}
+```
+
+应用场景
+
+- 框架中的依赖注入（如 Spring 的 `@Autowired`）。
+- 动态代理（如 JDK 动态代理）。
+
+**元数据**（Metadata）是“关于数据的数据”，即描述其他数据的信息。
+
+## 4. 4.反射如何使用
+
+反射(Reflection)是 Java 提供的一种强大机制，允许程序在运行时动态地获取类的信息、操作类的属性和方法。这种能力使得 Java 具有动态语言的特性。
+
+获取 Class 对象的三种方式
+
+```
+// 1. 通过类名.class
+Class<String> stringClass = String.class;
+
+// 2. 通过对象.getClass()
+String str = "Hello";
+Class<?> strClass = str.getClass();
+
+// 3. 通过Class.forName() - 最常用的方式
+Class<?> clazz = Class.forName("java.lang.String");
+```
+
+基本使用示例
+
+```
+// 获取类名
+String className = clazz.getName();  // java.lang.String
+String simpleName = clazz.getSimpleName();  // String
+
+// 获取修饰符
+int modifiers = clazz.getModifiers();
+Modifier.isPublic(modifiers);  // 检查是否是public
+
+// 获取包信息
+Package pkg = clazz.getPackage();
+```
+
+反射核心操作
+
+操作构造方法
+
+```
+// 获取所有public构造方法
+Constructor<?>[] constructors = clazz.getConstructors();
+
+// 获取指定参数的构造方法
+Constructor<?> constructor = clazz.getConstructor(String.class);
+
+// 创建实例
+Object instance = constructor.newInstance("Hello World");
+
+// 获取私有构造方法
+Constructor<?> privateConstructor = clazz.getDeclaredConstructor(int.class);
+privateConstructor.setAccessible(true);  // 设置可访问
+Object privateInstance = privateConstructor.newInstance(123);
+```
+
+操作方法
+
+```
+// 获取所有public方法(包括继承的)
+Method[] methods = clazz.getMethods();
+
+// 获取类声明的所有方法(不包括继承的)
+Method[] declaredMethods = clazz.getDeclaredMethods();
+
+// 获取指定方法
+Method method = clazz.getMethod("substring", int.class, int.class);
+
+// 调用方法
+Object result = method.invoke("Hello World", 0, 5);  // 返回"Hello"
+
+// 调用私有方法
+Method privateMethod = clazz.getDeclaredMethod("privateMethod");
+privateMethod.setAccessible(true);
+privateMethod.invoke(instance);
+```
+
+操作字段
+
+```
+// 获取所有public字段
+Field[] fields = clazz.getFields();
+
+// 获取类声明的所有字段(包括private)
+Field[] declaredFields = clazz.getDeclaredFields();
+
+// 获取指定字段
+Field field = clazz.getField("FIELD_NAME");
+
+// 获取字段值
+Object value = field.get(instance);
+
+// 设置字段值
+field.set(instance, newValue);
+
+// 操作私有字段
+Field privateField = clazz.getDeclaredField("privateField");
+privateField.setAccessible(true);
+Object privateValue = privateField.get(instance);
+```
+
+反射的应用，动态代理
+
+```
+interface Hello {
+    void sayHello();
+}
+
+class HelloImpl implements Hello {
+    public void sayHello() {
+        System.out.println("Hello World");
+    }
+}
+
+// 代理处理器
+class ProxyHandler implements InvocationHandler {
+    private Object target;
+    
+    public ProxyHandler(Object target) {
+        this.target = target;
+    }
+    
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("Before method call");
+        Object result = method.invoke(target, args);
+        System.out.println("After method call");
+        return result;
+    }
+}
+
+// 使用动态代理
+Hello hello = (Hello) Proxy.newProxyInstance(
+    Hello.class.getClassLoader(),
+    new Class<?>[] {Hello.class},
+    new ProxyHandler(new HelloImpl())
+);
+hello.sayHello();
+```
+
+注解处理
+
+```
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotation {
+    String value();
+}
+
+@MyAnnotation("Test Class")
+class MyClass {
+    @MyAnnotation("Test Field")
+    private String field;
+    
+    @MyAnnotation("Test Method")
+    public void method() {}
+}
+
+// 处理注解
+Class<?> clazz = MyClass.class;
+
+// 获取类上的注解
+MyAnnotation classAnnotation = clazz.getAnnotation(MyAnnotation.class);
+System.out.println(classAnnotation.value());  // 输出: Test Class
+
+// 获取方法上的注解
+Method method = clazz.getMethod("method");
+MyAnnotation methodAnnotation = method.getAnnotation(MyAnnotation.class);
+System.out.println(methodAnnotation.value());  // 输出: Test Method
+```
+
+## 5. 5.JVM 内存区的划分
+
+**1.** **程序计数器****(Program Counter Register)**
+
+- 线程私有
+- 记录当前线程执行的字节码行号指示器
+- 唯一不会出现OutOfMemoryError的区域
+
+**2. Java****虚拟机栈****(Java Virtual Machine Stacks)**
+
+- 线程私有
+- 存储栈帧(Frame)，每个方法调用会创建一个栈帧
+- 包含局部变量表、操作数栈、动态链接、方法出口等信息
+- 可能出现StackOverflowError和OutOfMemoryError
+
+**3.** **本地方法栈****(Native Method Stack)**
+
+- 线程私有
+- 为本地(Native)方法服务
+- 可能出现StackOverflowError和OutOfMemoryError
+
+**4. Java****堆****(Java Heap)**
+
+- 线程共享
+- 存储对象实例和数组
+- GC主要工作区域
+- 可细分为新生代(Eden、Survivor0、Survivor1)和老年代
+- 可能出现OutOfMemoryError
+
+**5.** **方法区****(Method Area)**
+
+- 线程共享
+- 存储类信息、常量、静态变量、即时编译器编译后的代码等
+- 在HotSpot VM中也被称为"永久代"(PermGen)，在Java 8中被元空间(Metaspace)取代
+- 可能出现OutOfMemoryError
+
+**6.** **运行时常量池****(Runtime Constant Pool)**
+
+- 方法区的一部分
+- 存放编译期生成的各种字面量和符号引用
+
+**7.** **直接内存****(Direct Memory)**
+
+- 不是JVM规范定义的内存区域
+- 使用Native函数库直接分配的堆外内存
+- 通过存储在Java堆中的DirectByteBuffer对象引用
+- 可能出现OutOfMemoryError
+
+![](https://cdn.nlark.com/yuque/0/2025/png/39189746/1744894990643-d7adff2c-d723-419a-8580-faf76340b357.png)
+
+这些内存区域共同协作，支持Java程序的运行，不同区域有不同的生命周期和垃圾回收策略。
+
+## 6. 6.IO 介绍一下
+
+Java I/O 流是Java中处理输入输出的核心机制，它提供了统一的接口来读写不同类型的数据源（如文件、网络连接、内存缓冲区等）。
+
+**一、****I/O** **流的基本概念**
+
+**1.** **流的分类**
+
+- **按方向**：
+
+- 输入流（InputStream/Reader）：从数据源读取数据
+- 输出流（OutputStream/Writer）：向目标写入数据
+
+- **按数据类型**：
+
+- 字节流（InputStream/OutputStream）：处理二进制数据
+- 字符流（Reader/Writer）：处理文本数据，自动处理字符编码
+
+核心类结构
+
+```
+java.io
+├── InputStream (字节输入流)
+│   ├── FileInputStream
+│   ├── ByteArrayInputStream
+│   └── FilterInputStream
+│       ├── BufferedInputStream
+│       ├── DataInputStream
+│       └── ...
+├── OutputStream (字节输出流)
+│   ├── FileOutputStream
+│   ├── ByteArrayOutputStream
+│   └── FilterOutputStream
+│       ├── BufferedOutputStream
+│       ├── DataOutputStream
+│       └── ...
+├── Reader (字符输入流)
+│   ├── InputStreamReader
+│   │   └── FileReader
+│   ├── BufferedReader
+│   └── ...
+└── Writer (字符输出流)
+    ├── OutputStreamWriter
+    │   └── FileWriter
+    ├── BufferedWriter
+    └── ...
+```
+
+**二、使用示例**
+
+**1.** **字节流示例**
+
+**文件复制（基础版）**
+
+```
+try (InputStream in = new FileInputStream("source.jpg");
+OutputStream out = new FileOutputStream("target.jpg")) {
+
+byte[] buffer = new byte[1024];
+int bytesRead;
+while ((bytesRead = in.read(buffer)) != -1) {
+out.write(buffer, 0, bytesRead);
+}
+} catch (IOException e) {
+e.printStackTrace();
+}
+```
+
+**使用缓冲流提高性能**
+
+```
+try (InputStream in = new BufferedInputStream(new FileInputStream("source.jpg"));
+OutputStream out = new BufferedOutputStream(new FileOutputStream("target.jpg"))) {
+
+byte[] buffer = new byte[8192];  // 更大的缓冲区
+int bytesRead;
+while ((bytesRead = in.read(buffer)) != -1) {
+out.write(buffer, 0, bytesRead);
+}
+}
+```
+
+**2.** **字符流示例**
+
+**文本文件读取**
+
+```
+try (BufferedReader reader = new BufferedReader(new FileReader("text.txt"))) {
+String line;
+while ((line = reader.readLine()) != null) {
+System.out.println(line);
+}
+}
+```
+
+**文本文件写入**
+
+```
+try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"))) {
+writer.write("第一行");
+writer.newLine();  // 换行
+writer.write("第二行");
+}
+```
+
+**使用****try-with-resources****自动关闭资源**
+
+```
+try (InputStream in = new FileInputStream("data.bin");
+OutputStream out = new FileOutputStream("copy.bin")) {
+// 自动关闭资源
+byte[] buffer = new byte[1024];
+int bytesRead;
+while ((bytesRead = in.read(buffer)) != -1) {
+out.write(buffer, 0, bytesRead);
+}
+}
+```
+
+**3.** **数据流（处理基本数据类型）**
+
+**写入基本数据类型**
+
+```
+try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("data.dat"))) {
+dos.writeInt(100);
+dos.writeDouble(3.14);
+dos.writeBoolean(true);
+dos.writeUTF("Hello");
+}
+```
+
+**读取基本数据类型**
+
+```
+try (DataInputStream dis = new DataInputStream(new FileInputStream("data.dat"))) {
+int i = dis.readInt();
+double d = dis.readDouble();
+boolean b = dis.readBoolean();
+String s = dis.readUTF();
+
+System.out.println(i + ", " + d + ", " + b + ", " + s);
+}
+```
+
+**4.** **对象序列化流**
+
+**对象序列化（写入）**
+
+```
+class Person implements Serializable {
+private String name;
+private int age;
+// 构造方法、getter/setter省略
+}
+
+try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.dat"))) {
+Person person = new Person("张三", 25);
+oos.writeObject(person);
+}
+```
+
+**对象反序列化（读取）**
+
+```
+try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.dat"))) {
+Person person = (Person) ois.readObject();
+System.out.println(person.getName() + ", " + person.getAge());
+}
+```
+
+**三、最佳实践**
+
+1. **始终关闭流**：使用try-with-resources语句确保资源释放
+2. **使用缓冲流**：特别是对于小量多次的I/O操作
+3. **处理异常**：妥善处理IOException
+4. **选择正确的流类型**：
+
+- 文本数据：字符流（Reader/Writer）
+- 二进制数据：字节流（InputStream/OutputStream）
+
+5. **注意字符编码**：指定正确的字符集（如UTF-8）
+
+```
+new InputStreamReader(new FileInputStream("file.txt"), StandardCharsets.UTF_8);
+```
+
+## 7. 7.NIO 介绍一下
+
+Java NIO (New I/O) 是 Java 1.4 引入的一套新的 I/O API，提供了与传统 I/O 不同的编程模型，主要目标是提高 I/O 操作的效率，特别是在高并发场景下。
+
+**NIO 核心组件**
+
+**1. Buffer****（缓冲区）**
+
+- 数据容器，所有数据读写都通过缓冲区进行
+- 核心实现：ByteBuffer（还有 CharBuffer, IntBuffer 等)
+- 重要属性：
+
+- capacity：容量
+- position：当前位置
+- limit：读写限制
+- mark：标记位置
+
+**2. Channel****（通道）**
+
+- 双向数据传输通道，可以同时读写
+- 主要实现：
+
+- FileChannel：文件通道
+- SocketChannel：TCP 客户端通道
+- ServerSocketChannel：TCP 服务端通道
+- DatagramChannel：UDP 通道
+
+**3. Selector****（选择器）**
+
+- 多路复用器，用于检查多个 Channel 的状态
+- 允许单线程管理多个 Channel
+- 基于操作系统提供的 I/O 多路复用机制（如 epoll, kqueue）
+
+## 8. 8.线程创建的方式
+
+1,2,3,4
+
+## 9. 9.线程池的原理
+
+线程的频繁的创建和销毁是损耗性能的，以一种池化的思想去管理线程，复用线程可以减少线程频繁创建销毁的虽好。**核心就是线程的复用**。
+
+线程池的核心线程数，参考ThreadPoolExecutor
+
+![](https://cdn.nlark.com/yuque/0/2025/png/39189746/1744897501104-07240841-b367-4437-b38d-878a0f540a58.png)
+
+- corePoolSize 核心线程数目
+- maximumPoolSize 最大线程数目 = (核心线程+救急线程的最大数目)
+- keepAliveTime 生存时间 - 救急线程的生存时间，生存时间内没有新任务，此线程资源会释放
+- unit 时间单位 - 救急线程的生存时间单位，如秒、毫秒等
+- workQueue - 当没有空闲核心线程时，新来任务会加入到此队列排队，队列满会创建救急线程执行任务
+- threadFactory 线程工厂 - 可以定制线程对象的创建，例如设置线程名字、是否是守护线程等
+- handler 拒绝策略 - 当所有线程都在繁忙，workQueue 也放满时，会触发拒绝策略
+
+工作流程
+
+![](https://cdn.nlark.com/yuque/0/2025/png/39189746/1744897557796-cae046bc-871f-492c-8181-14039d170ecf.png)
+
+1，任务在提交的时候，首先判断核心线程数是否已满，如果没有满则直接添加到工作线程执行
+
+2，如果核心线程数满了，则判断阻塞队列是否已满，如果没有满，当前任务存入阻塞队列
+
+3，如果阻塞队列也满了，则判断线程数是否小于最大线程数，如果满足条件，则使用临时线程执行任务
+
+如果核心或临时线程执行完成任务后会检查阻塞队列中是否有需要执行的线程，如果有，则使用非核心线程执行任务
+
+4，如果所有线程都在忙着（核心线程+临时线程），则走拒绝策略
+
+## 10. 10.线程池的拒绝策略
+
+线程池的拒绝策略（Rejected Execution Handler）**是当线程池无法接受新任务时（队列已满且线程数达到最大值）采取的处理方式**。
+
+Java提供了4种内置拒绝策略，都实现了RejectedExecutionHandler接口。
+
+**一、四种内置拒绝策略**
+
+**1. AbortPolicy****（中止策略）**
+
+**默认策略**
+
+```
+new ThreadPoolExecutor.AbortPolicy()
+```
+
+- **行为**：直接抛出RejectedExecutionException异常
+- **特点**：
+
+- 让调用者感知到任务被拒绝
+- 需要调用者自己处理异常
+
+- **适用场景**：需要明确知道任务是否被拒绝的重要业务
+
+**2. CallerRunsPolicy****（调用者运行策略）**
+
+```
+new ThreadPoolExecutor.CallerRunsPolicy()
+```
+
+- **行为**：将任务回退给调用者线程执行
+- **特点**：
+
+- 不会丢弃任务
+- 会降低新任务提交速度（因为调用者线程被占用）
+
+- **适用场景**：不允许任务丢失且可以接受性能下降的场景
+
+**3. DiscardPolicy****（丢弃策略）**
+
+```
+new ThreadPoolExecutor.DiscardPolicy()
+```
+
+- **行为**：静默丢弃被拒绝的任务，不做任何处理
+- **特点**：
+
+- 任务被无声无息丢弃
+- 可能导致业务问题不易被发现
+
+- **适用场景**：允许丢失非关键任务的场景
+
+**4. DiscardOldestPolicy****（丢弃最老策略）**
+
+```
+new ThreadPoolExecutor.DiscardOldestPolicy()
+```
+
+- **行为**：丢弃队列中最老的任务（队首任务），然后尝试重新提交当前任务
+- **特点**：
+
+- 可能丢失重要但较老的任务
+- 适合时效性强的任务
+
+- **适用场景**：新任务比老任务更重要的场景
+
+**二、自定义拒绝策略**
+
+实现RejectedExecutionHandler接口创建自定义策略：
+
+```
+public class CustomRejectionPolicy implements RejectedExecutionHandler {
+@Override
+public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+// 自定义处理逻辑，例如：
+// 1. 记录日志
+System.err.println("Task rejected: " + r.toString());
+
+// 2. 保存到数据库等待恢复
+// saveToDatabase(r);
+
+// 3. 延迟后重试
+try {
+executor.getQueue().offer(r, 60, TimeUnit.SECONDS);
+} catch (InterruptedException e) {
+Thread.currentThread().interrupt();
+}
+}
+}
+
+// 使用自定义策略
+executor.setRejectedExecutionHandler(new CustomRejectionPolicy());
+```
+
+**三、各策略适用场景对比**
+
+|   |   |   |   |
+|---|---|---|---|
+|**策略**|**是否丢失任务**|**是否抛出异常**|**适用场景**|
+|AbortPolicy|是|是|需要严格保证任务不被静默丢弃的场景|
+|CallerRunsPolicy|否|否|不允许丢失但可以接受性能下降的场景|
+|DiscardPolicy|是|否|允许静默丢弃非关键任务的场景|
+|DiscardOldestPolicy|是|否|新任务比队列中老任务更重要的场景|
+
+## 11. 11.设计模式有了解那些
+
+## 12. 12.hashmap的实现原理
+
+## 13. 13.在高并发的场景下解决hashmap的线程安全。
+
+**一、****HashMap** **线程安全问题**
+
+标准 HashMap 在多线程环境下存在以下问题：
+
+1. 数据不一致：多线程同时修改可能导致数据丢失
+2. 死循环：JDK7及以前版本的扩容可能导致环形链表
+3. 并发修改异常：迭代时修改会抛出 ConcurrentModificationException
+
+**二、解决方案**
+
+**1.** **使用** **Collections.synchronizedMap**
+
+```
+Map<String, Object> map = Collections.synchronizedMap(new HashMap<>());
+```
+
+- **原理：通过同步方法包装**
+- **特点：**
+
+- **简单但性能较差（全表锁）**
+- **适合低并发场景**
+
+**2.** **使用** **Hashtable**
+
+```
+Map<String, Object> map = new Hashtable<>();
+```
+
+- 特点：
+
+- 早期线程安全实现
+- 所有方法同步，性能较差
+- 不推荐使用
+
+**3.** **使用** **ConcurrentHashMap****（推荐）**
+
+JDK7 实现
+
+- 分段锁技术：将数据分成多个段(segment)，每段独立加锁
+- 并发度：默认16个段，可配置
+
+JDK8+ 实现
+
+```
+ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>();
+```
+
+- 改进：
+
+- 取消分段锁，改用 synchronized + CAS 锁单个桶(Node)
+- 红黑树优化：链表长度>8时转为红黑树
+- 更高的并发度
+
+- 关键特性：
+
+- 读操作完全无锁
+- 写操作只锁单个桶
+- 扩容时支持并发迁移
+
+**4.** **其他并发****Map****实现**
+
+**ConcurrentSkipListMap**
+
+```
+ConcurrentNavigableMap<String, Object> map = new ConcurrentSkipListMap<>();
+```
+
+- **特点：**
+
+- 基于跳表实现
+- 天然有序(Map.Entry)
+- 适合需要排序的场景
+
+**三、性能对比**
+
+|   |   |   |   |
+|---|---|---|---|
+|**实现方式**|**读性能**|**写性能**|**适用场景**|
+|**HashMap**|**极高**|**极高**|**单线程环境**|
+|**Hashtable**|**低**|**低**|**遗留系统****(****不推荐****)**|
+|**Collections.synchronizedMap**|**低**|**低**|**低并发，简单同步需求**|
+|**ConcurrentHashMap**|**高**|**中高**|**高并发读写**|
+|**ConcurrentSkipListMap**|**中**|**中**|**需要排序的高并发场景**|
+
+**四、最佳实践**
+
+1. **首选** **ConcurrentHashMap****：大多数并发场景的最佳选择**
+2. **合理设置初始容量：避免频繁扩容**
+
+```
+new ConcurrentHashMap<>(initialCapacity, loadFactor, concurrencyLevel);
+```
+
+1. **使用原子方法：避免额外的同步**
+2. **考虑读多写少场景：可以配合** **CopyOnWrite** **模式**
+3. **JDK****版本选择：****JDK8+****的实现在各方面都更优**
+
+## 14. 14.springboot 的自动配置原理
+
+@EnableAutoConfiguration是实现自动化配置的核心注解。 该注解通过@Import注解导入对应的配置选择器。
+
+内部就是读取了该项目和该项目引用的Jar包的的classpath路径下META-INF/spring.factories文件中的所配置的类的全类名。 在这些配置类中所定义的Bean会根据条件注解所指定的条件来决定是否需要将其导入到Spring容器中。
+
+可以说一下自定义的stater。
+
+## 15. 15.Mysql 的锁机制
+
+全局锁
+
+对整个数据库加锁，只允许事务的读操作，写操作会处于等待状态
+
+```
+flush tables with read lock; # 加锁
+unlock tables;  # 解锁，或者推出终端也会解锁
+```
+
+使用场景： 数据备份
+
+![image-20241231114304465](images/Mysql 的锁机制.assets/image-20241231114304465.png)
+
+如果不加锁，就会出现数据不一致问题。因为在备份的时候，有业务导致数据库在备份的过程中发生变化，导致备份后数据不一致。
+
+如何备份操作呢？
+
+首先进入mysql 终端加锁
+
+```
+flush tables with read lock; # 加锁
+```
+
+新开一个mysql命令行，尝试修改数据，发现修改不了，一直阻塞状态。直到释放全局锁。
+
+然后用mysql提供的工具 mysqldump(主语不是sql语句，直接在我们的电脑终端执行即可)
+
+```
+C:\Users\26611>mysqldump -uroot -p studb > d:/studb.sql
+Enter password: ****
+```
+
+缺点： 1. 对整个数据库加锁，数据库只能读，那么业务就不能写，会造成业务停滞。
+
+2.对从库备份，使用全局锁，会导致在使用全局锁时，导致binlog日志文件不能写，会导致延迟。
+
+使用全局锁，会影响业务写操作，那么怎么解决呢？
+
+有些数据库引擎(Innodb)支持可重复读的事务隔离级别，在备份前开启事务会创建 Read View，备份期间业务仍可更新数据。可重复读下，即使其他事务更新，备份的 Read View 不受影响，确保了数据的一致性。使用 mysqldump 备份时，可加 –single-transaction 参数以适应支持此隔离级别的引擎，如 InnoDB。对于 MyISAM 这种不支持事务的引擎，备份时需使用全局锁。
+
+表级锁
+
+对表加锁，表锁，元数据锁，意向锁
+
+表共享锁（Read Lock）的使用
+
+```
+use studb # 选择数据库
+lock tables students read;  # 对表加共享锁
+unlock tables；    # 解锁
+```
+
+共享锁，对表加共享锁，允许所有的事务可以读表，但是不能进行写操作；加锁的mysql终端，进行写操作，会报错，其他mysql终端写操作会阻塞。
+
+排他锁（Write Lock） 的使用
+
+```
+use studb # 选择数据库
+lock tables students  write; # 对标加排他锁
+unlock tables; # 解锁
+```
+
+排他锁，对表加排他锁，只有拿到排他锁的事务才可以对标读，写操作，其他事务会阻塞，直到释放锁（unlock tables 或者关闭加锁的终端）。
+
+同时对表加共享锁和排他锁后，加锁的mysql终端不能对其他表操作。如下
+
+```
+mysql> lock tables students read;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from test;
+ERROR 1100 (HY000): Table 'test' was not locked with LOCK TABLES
+```
+
+元数据锁
+
+元数据锁（MDL）主要用于保护数据库表结构。当一个事务试图修改数据库的结构（如通过`ALTER TABLE`命令添加或删除列）时，它需要先获得相应对象的元数据锁。这种锁确保了在表结构被修改的同时，不会有其他事务尝试访问或修改该表的结构，从而避免数据不一致或错误。
+
+MDL加锁过程是系统自动控制，无序显示使用，在访问一张表的时候会自动加上。在表上有活动事务的时候（也就是加上了元数据锁），当一个事务要修改表结构的时候，如果表上加了元数据锁，那么就会进入阻塞状态。
+
+意向锁
+
+意向锁（Intention Lock）主要用于解决行级锁和表级锁之间的冲突，提高数据库的并发性和性能.
+
+意向锁是一种表级别的锁，用于表明当前事务在表中行级锁的特性。它的主要目的是协调行锁和表锁之间的关系，避免锁冲突，从而提高数据库的并发性能。怎么理解呢？
+
+在进行update 操作时会自动加上行级锁，然后其他事务对这个表加表锁，会扫描每一行检查行锁的类型，判断释放能加上表锁。但是有了意向锁之后，进行update 操作（行锁），会在表上加一个意向锁（IS和IX）,其他事务在加表锁直接和意向锁比较判断是否能加锁。
+
+1. **意向共享锁（IS Lock）**：
+
+- 当事务打算对某一行加共享锁时，它首先在表级加一个意向共享锁。
+- 意向共享锁允许多个事务在表级别并发地读取数据，但不允许修改数据。
+
+2. **意向排他锁（IX Lock）**：
+
+- 当事务打算对某一行加排他锁时，它首先在表级加一个意向排他锁。
+- 意向排他锁意味着事务将在行级上加排他锁，其他事务不能在该行上加意向共享锁或意向排他锁。
+
+**意向共享锁与共享锁可以兼容，而意向排他锁与排他锁是互斥的。**
+
+行锁
+
+1. **Record Lock（记录锁）**：单独在记录上加锁，适合如主键记录更新等场景。
+
+举个例子，当一个事务执行了下面这条语句：
+
+```
+ mysql > begin; 
+ mysql > select * from t_test where id = 1 for update;
+```
+
+就是对 t_test 表中主键 id 为 1 的这条记录加上 X 型的记录锁，这样其他事务就无法对这条记录进行修改了。
+
+当事务执行 commit 后，事务过程中生成的锁都会被释放。
+
+- 当一个事务对一条记录加了 S 型记录锁后，其他事务也可以继续对该记录加 S 型记录锁（S 型与 S 锁兼容），但是不可以对该记录加 X 型记录锁（S 型与 X 锁不兼容）；
+- 当一个事务对一条记录加了 X 型记录锁后，其他事务既不可以对该记录加 S 型记录锁（S 型与 X 锁不兼容），也不可以对该记录加 X 型记录锁（X 型与 X 锁不兼容）。
+
+2. **Gap Lock（间隙锁）**：Gap Lock 称为间隙锁，只存在于可重复读隔离级别，目的是为了解决可重复读隔离级别下幻读的现象。假设，表中有一个范围 id 为（3，5）间隙锁，那么其他事务就无法插入 id = 4 这条记录了，这样就有效的防止幻读现象的发生.
+
+3. **Next-Key Lock（临键锁）**：Next-Key Lock 称为临键锁，是 Record Lock + Gap Lock 的组合，锁定一个范围，并且锁定记录本身。，锁定一个范围，并且锁定记录本身。也不能修改 id = 5 这条记录。所以，next-key lock 即能保护该记录，又能阻止其他事务将新纪录插入到被保护记录前面的间隙中。
+
+## 16. 16.Mysql 如何解决锁竞争的问题
+
+从以下几点分析
+
+1. 事务优化
+
+- **缩短事务时间**：事务越小越好，尽快提交
+- **避免长事务**：监控并终止执行时间过长的事务
+- **合理设置隔离级别**：在允许的情况下使用较低的隔离级别
+
+2. 索引优化
+
+- **确保查询使用索引**：没有索引会导致表锁升级
+- **优化索引设计**：减少不必要的索引，复合索引要合理
+- **使用覆盖索引**：避免回表操作
+
+3. Sql 语句优化
+
+- **避免全表扫描**：EXPLAIN 分析执行计划
+- **减少热点更新**：如计数器场景使用增量更新
+- **分解大批量操作**：大事务拆分为小批次
+
+4. 锁机制的选择：
+
+- **行锁替代表锁**：使用 InnoDB 引擎
+- **乐观锁替代悲观锁**：适合读多写少场景
+
+```
+UPDATE table SET col=new_val, version=version+1 
+WHERE id=1 AND version=old_version;
+```
+
+5. 架构优化
+
+- **读写分离**：查询走从库
+- **分库分表**：减少单表竞争
+- **使用缓存**：Redis 缓存热点数据
+
+## 17. 17.mvcc是什么
+
+多版本并发控制，主要是对多个事务对一条记录进行修改，同时保证数据的安全性的一种实践，mvcc的实现，依赖隐藏字段，版本链，读视图。
+
+## 18. 18.缓存使用的问题
+
+缓存穿透，缓存雪崩，缓存击穿，数据一致性问题
+
+## 19. 19.常用的负载均衡策略
+
+**1.** **静态负载均衡策略**
+
+**轮询** **(Round Robin)**
+
+- **原理**：依次将请求分配给每个服务器，循环往复
+- **优点**：简单、公平
+- **缺点**：不考虑服务器实际负载
+- **适用场景**：服务器性能相近的简单场景
+
+**加权轮询** **(Weighted Round Robin)**
+
+- **原理**：在轮询基础上，为性能强的服务器分配更高权重，获得更多请求
+- **优点**：考虑了服务器性能差异
+- **缺点**：权重需要手动配置，不能动态调整
+
+**随机** **(Random)**
+
+- **原理**：随机选择一个服务器处理请求
+- **优点**：实现简单
+- **缺点**：可能造成负载不均
+
+**加权随机** **(Weighted Random)**
+
+- **原理**：按权重概率随机选择服务器
+- **优点**：考虑了服务器性能差异
+- **缺点**：权重需要手动配置
+
+**哈希** **(Hash/****一致性哈希****)**
+
+- **原理**：根据请求的某个特征值(如IP、URL)计算哈希值选择服务器
+- **优点**：相同请求总是落到同一服务器，适合有状态服务
+- **缺点**：服务器增减时可能影响大量请求路由
+
+**2.** **动态负载均衡策略**
+
+**最少连接** **(Least Connections)**
+
+- **原理**：选择当前连接数最少的服务器
+- **优点**：动态适应服务器负载
+- **缺点**：需要实时监控连接数
+
+**加权最少连接** **(Weighted Least Connections)**
+
+- **原理**：结合服务器权重和当前连接数选择
+- **优点**：更精确的负载分配
+- **缺点**：实现复杂度较高
+
+**响应时间加权** **(Response Time Based)**
+
+- **原理**：根据服务器历史响应时间分配请求
+- **优点**：优先选择响应快的服务器
+- **缺点**：需要持续监控响应时间
+
+**资源利用率** **(CPU/Memory Based)**
+
+- **原理**：根据服务器CPU、内存等资源使用率分配
+- **优点**：最精确反映服务器实际负载
+- **缺点**：监控开销大
+
+**3.** **特殊场景策略**
+
+**地理位置路由** **(Geo-Based)**
+
+- 根据用户地理位置选择最近的服务器
+
+**会话保持** **(Sticky Session)**
+
+- 同一用户的请求始终路由到同一服务器
+
+**故障转移** **(Failover)**
+
+- 当首选服务器不可用时自动切换到备用服务器
+
+**负载均衡实现层次**
+
+1. **DNS****负载均衡**：通过DNS解析分配
+2. **硬件负载均衡**：如F5、A10等专用设备
+3. **软件负载均衡**：如Nginx、HAProxy、LVS
+4. **客户端负载均衡**：如Ribbon、Spring Cloud LoadBalancer
+
+选择负载均衡策略时需要考虑服务器性能差异、请求特性、会话状态要求等因素，通常需要结合实际场景组合使用多种策略。
+
+## 20. 20.CI,CD了解吗
+
+**1.** **基本概念**
+
+**CI (****持续集成，****Continuous Integration)**
+
+- **定义**：开发人员频繁地将代码变更合并到共享主干（通常每天多次）
+- **核心目标**：通过自动化构建和测试，快速发现集成错误
+- **关键实践**：
+
+- 代码提交触发自动构建
+- 运行自动化测试套件
+- 快速反馈构建和测试结果
+
+**CD (****持续交付****/****持续部署****)**
+
+- **持续交付** **(Continuous Delivery)**：
+
+- 确保代码变更可以随时安全地部署到生产环境
+- 需要手动触发最后的部署步骤
+
+- **持续部署** **(Continuous Deployment)**：
+
+- 自动化整个流程，代码通过测试后自动部署到生产环境
+- 无需人工干预（关键变更可能仍需审批）
+
+**2. CI/CD** **工作流程**
+
+```
+代码提交 → 触发CI → 代码构建 → 单元测试 → 集成测试 → 
+↓ (持续交付)                        ↓ (持续部署)
+人工审核 → 部署到生产              自动部署到生产
+```
+
+**3.** **核心组件与工具**
+
+**CI** **工具**
+
+- **Jenkins**：最流行的开源自动化服务器
+- **GitLab CI/CD**：与GitLab深度集成
+- **GitHub Actions**：GitHub原生CI/CD解决方案
+- **CircleCI**：云原生CI/CD平台
+- **Travis CI**：早期的云CI服务
+
+**CD** **工具**
+
+- **Argo CD**：Kubernetes的声明式GitOps工具
+- **Spinnaker**：Netflix开源的持续交付平台
+- **Tekton**：Kubernetes原生CI/CD框架
+
+**辅助工具**
+
+- **Docker**：容器化应用打包
+- **Kubernetes**：容器编排
+- **Terraform**：基础设施即代码
+- **Ansible**：配置管理
+
+**4. CI/CD** **的优势**
+
+1. **更快的发布周期**：从月/周发布到日/小时级发布
+2. **更高质量的代码**：通过自动化测试及早发现问题
+3. **降低风险**：小批量变更比大批量变更风险低
+4. **提高开发效率**：减少手动流程，专注开发
+5. **更好的可追溯性**：每个变更都有完整记录
+
+**5.** **实施****CI/CD****的关键步骤**
+
+1. **版本控制**：所有代码和配置纳入Git等版本控制系统
+2. **自动化构建**：一键式构建整个系统
+3. **自动化测试**：建立全面的测试套件（单元、集成、端到端）
+4. **频繁提交**：小步快走，避免大规模合并冲突
+5. **监控与反馈**：建立快速反馈机制
+
+**6.** **现代****CI/CD****实践**
+
+- **GitOps**：使用Git作为唯一事实来源
+- **不可变基础设施**：每次部署创建全新环境
+- **渐进式交付**：金丝雀发布、蓝绿部署
+- **混沌工程**：在生产中故意引入故障测试系统韧性
+
+CI/CD已成为现代软件开发的标配实践，它不仅仅是工具链的集成，更是一种开发文化和流程的变革，能够显著提升软件交付效率和质量。
+
+## 21. 总结
+
+光顾着项目，八股知识不熟悉了，一定要具体的使用来展开学习，不和具体的操作联系起来，一是说的空泛，二是确实不好记忆。
+
+受打击了，感觉还是要多被打击打击几次，才能学到更多的知识。
+
+这次面试：
+
+**提醒我要多扫盲八股，结合demo学习。**
+
+**设计模式好几次问了，要快速的学习。**
+
+**CI,DI有时间一定要学习一下，但是显然不是这时候。**
+
+# 智能思创二面-2025/4/21
+
+1.大模型生成数据分析生成图片的流程
+
+2.异步的实现
+
+前端异步，后端异步。
+
+3.接入的模型
+
+封装了一个AI工具类，使用的是火山引擎，支持多种模型，比如说DeepSeek，Drobao。只需要在调用AI服务的时候，指定模型名称，就可以。当然有默认的值。
+
+4.AI生成题目和答案（说看到好多简历是这个项目，问笑了）
+
+5.优化prompt
+
+6.ES作用，数据同步如何实现
+
+7.ES除了做分词检索，还有什么用途（在智能知识库检索这一方面）
+
+分词向量，实现语义检索，ES可以实现，同时现在的LLM
+
+8.hot-key 组件的使用介绍
+
+9.前端实现
+
+ant Design
+
+10.大模型数据分析是否可行
+
+两方面：
+
+对于一些探索性启发式的的问题（市场趋势，身体监控指标的建议，评论的情感分析)是可行的，可以使用大模型来分析提高效率。
+
+对于银行等数据要求高的，目前还是不现实的，考虑如何对数据准确要求高的，使用大模型来数据分析；对大模型分析结果还要进行二次校验，成本比较高。（不是聊具体实现，因为使用大模型，享受他的智能就要接收他的幻写，目前大模型做数据分析还是不可以的，之后的话就要看大模型的发展，以及我们程序的校验）
+
+10.反问业务
+
+## 总结
+
+多线程异步和MQ异步，还是有点不太清楚，还需要在看一下。我的理解多线程就是伪异步。
+
+如何实现语义检索，需要考虑，这个项目重复度有点高了，要新扩展了，最近要考虑如何实现语义检索，之后在修改mcp服务，调用语义检索，获取网站数据。
+
+# 任拓科技一面-2025-4-22
+
+## 1.自我介绍
+
+个人基本信息 + 校园经历 + 实习经历 + 项目经历 + 个人技能
+
+## 2.现在在哪里
+
+在公司所在城市+亲人在这边+同学在这边
+
+## 3.为啥不在实习单位待了
+
+有转正了，但是要内部转岗（实施），还是想干java开发 大模型应用方向方向。
+
+## 4.工作期间的表现
+
+给转正了，最好的说服
+
+## 4.大模型生成图片的流程
+
+有一个供用户使用的接口，在数据库查用户的基础信息表，查血糖，血压记录表，进行数据的拼接（用户年龄，BMI 血糖近3葛个月的变化记录），调用AI服务（systemprompt userprompt 拼接）进行数据分析生成要渲染的图形数据，以及对用户健康的建议，获取生成的数据，主要是Echarts 来渲染，以及生成的结论。中间可以说异步的调用RabbitMQ。
+
+## 5.考勤系统的设计，库表设计，业务实现，AI应用。
+
+## 6.前端能力
+
+能够利用AI开发提效，（说依赖AI开发，不太好，说可以自己实现前端页面，之不过有一些框架中的一些组件，可能不太熟悉，还要去官网看，效率不太高，但是可以借助AI来提效）
+
+感觉可以在系统的说一下比较好：
+
+熟练html css js ,以及了解开发框架vue,React，以及Ant Design 前端框架开发。在谈谈对前端的看法，AI带来的冲击，以及前后端交互的理解。
+
+## 7.Mysql 存储引擎
+
+- 一、InnoDB
+
+1. **特点**
+
+- 支持事务：InnoDB提供了具有提交、回滚和崩溃恢复能力的事务安全，即ACID（原子性、一致性、隔离性、持久性）兼容的事务支持。
+- 行级锁定：InnoDB支持行级锁定，避免了对整个表或大部分表的加锁，提高了并发性能。
+- 索引数据结构： 底层是B+树，快速查找数据，降低磁盘IO(只在叶子节点存储数据)，范围查询（叶子节点存储的数据维护一个双向列表）
+- 外键约束：InnoDB支持外键约束，确保了数据的完整性和一致性。
+- 缓冲池：InnoDB拥有自己的缓冲池，用于在主内存中缓存数据和索引，提高了查询和写入速度。
+- 崩溃恢复：InnoDB通过redolog来保证崩溃后的数据恢复，当数据库异常崩溃后，重新启动时会根据redolog进行数据恢复，保证数据库恢复到崩溃前的状态。
+
+2. **适用场景**
+
+- 适用于需要高事务完整性和并发性能的应用场景，如电子商务网站、金融系统等。
+
+二、MyISAM
+
+1. **特点**
+
+- 不支持事务：MyISAM不支持事务处理和崩溃恢复功能，因此不适用于需要高事务完整性的应用场景。
+- 表级锁定：MyISAM只支持表级锁定，并发性能较差，同时读操作会阻塞写操作，写操作也会阻塞读操作（但读操作之间不会相互阻塞）。
+- 索引数据结构：和innodb一样采用了基于B+树的索引机制，但是在叶子节点存储的数据只是索引的值而非整行数据。
+- 占用空间较小：MyISAM对数据的压缩和文件大小的管理相对简单，因此在数据管理方面能够占用较小的存储空间。
+- 全文索引：MyISAM支持全文索引，适用于需要全文搜索的应用场景。
+
+2. **适用场景**
+
+- 适用于读操作远远多于写操作的场景，如数据仓库、日志记录等。
+
+三、MEMORY
+
+1. **特点**
+
+- 数据存储在内存中：MEMORY存储引擎将数据存储在内存中，因此读写速度非常快。
+- 不支持持久化存储：当MySQL服务器关闭或重启时，MEMORY引擎中的数据将丢失，因此不适用于需要长期保存数据的应用场景。
+- 支持哈希索引：可以快速查询数据，但是不能范围查询。
+- 表级锁定：MEMORY引擎使用表级锁定，可能导致并发性能问题。
+- 受限于可用内存大小：由于数据存储在内存中，因此受限于可用的内存大小，如果表过大，可能无法完全缓存在内存中，导致性能下降。
+
+2. **适用场景**
+
+- 适用于临时表、缓存表和高性能临时存储，如缓存数据等。
+
+## 8.数据库能力
+
+建表，sql的多表查询，Sql优化（索引（索引失效），选择合适的字段），良好的sql编写习惯（不使用select * 减少回表 ； 小标驱动大表连接查询），防止SQl注入（预编译+参数注入而不是直接拼接； Druid 的sql防火墙），有拆分思想（对长事务分批处理），主从架构（了解同步原理 - binlog细节）；
+
+了解数据库的锁机制，分库分表思想
+
+9.排序的几种算法
+
+冒泡排序
+
+```
+public static void bubbleSort(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                // 交换 arr[j] 和 arr[j+1]
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
+```
+
+## 9.了解哪几种排序算法
+
+快速排序 时间效率 优缺点 稳定性
+
+```
+public static void quickSort(int[] arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        
+        quickSort(arr, low, pi-1);
+        quickSort(arr, pi+1, high);
+    }
+}
+
+private static int partition(int[] arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    
+    int temp = arr[i+1];
+    arr[i+1] = arr[high];
+    arr[high] = temp;
+    
+    return i+1;
+}
+```
+
+归并排序
+
+```
+public static void mergeSort(int[] arr, int l, int r) {
+    if (l < r) {
+        int m = (l + r) / 2;
+        
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        
+        merge(arr, l, m, r);
+    }
+}
+
+private static void merge(int[] arr, int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    
+    int[] L = new int[n1];
+    int[] R = new int[n2];
+    
+    System.arraycopy(arr, l, L, 0, n1);
+    System.arraycopy(arr, m+1, R, 0, n2);
+    
+    int i = 0, j = 0, k = l;
+    
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+    
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+```
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+|**排序算法**|**平均时间复杂度**|**最坏时间复杂度**|**空间复杂度**|**稳定性**|
+|冒泡排序|O(n²)|O(n²)|O(1)|稳定|
+|选择排序|O(n²)|O(n²)|O(1)|不稳定|
+|插入排序|O(n²)|O(n²)|O(1)|稳定|
+|希尔排序|O(n log n)|O(n²)|O(1)|不稳定|
+|归并排序|O(n log n)|O(n log n)|O(n)|稳定|
+|快速排序|O(n log n)|O(n²)|O(log n)|不稳定|
+|堆排序|O(n log n)|O(n log n)|O(1)|不稳定|
+
+## 11.笔试
+
+![](https://cdn.nlark.com/yuque/0/2025/png/39189746/1745304036801-258b5771-8fc2-43bf-951c-0379bb58565f.png)
+
+```
+import java.util.*;
+
+class Node {
+    Integer id;
+    String name;
+    List<Node> children;
+}
+
+public class Solution {
+    public static List<Integer> find_ids_by_name(Node node, String find_name) {
+        List<Integer> result = new ArrayList<>();
+        dfs(node, find_name, result);
+        return result;
+    }
+
+    private static void dfs(Node node, String find_name, List<Integer> result) {
+        if (node == null) return;
+        if (find_name.equals(node.name)) {
+            result.add(node.id);
+        }
+        if (node.children != null) {
+            for (Node child : node.children) {
+                dfs(child, find_name, result);
+            }
+        }
+    }
+}
+```
+
+```
+编程题五
+(
+⼝头说下思路
+) 
+有
+100
+个⽇志⽂件，每个⽂件⼏⼗个
+G
+左右，⽇志⽂件由⼀⾏⼀⾏的记录组成，每⼀⾏都能解析出来⼀个
+user_id
+，计算机内存在⼏百M
+级别，
+不能⼀⼝⽓放⼊内存进⾏排序
+ 
+要求输⼊是
+100个⽇志⽂件的⽂件名，然后所有⽇志按照
+user_id
+排序好了之后放⼊⼀个⽂件
+```
+
+- 问题本质
+- 有 100 个超大日志文件，每个文件几十 GB，总数据远超内存，且每行有 user_id。
+- 目标：将所有日志按 user_id 排序，输出到一个新文件。
+- 内存有限，不能一次性全部读入排序。
+- 解决方案：外部排序（多路归并排序）
+- 第一步：分块排序（归并前的准备）
+
+- 依次读取每个大文件的一部分（比如 100MB），将这一部分全部读入内存，按 user_id 排序后写到临时小文件（称为“归并段”）。
+- 所有大文件都这样处理，最后会得到很多已排序的小文件。
+
+- 第二步：多路归并
+
+- 用最小堆（优先队列）维护每个小文件的当前最小 user_id 行。
+- 每次从堆顶取出最小的 user_id 行，写入输出文件，然后从对应小文件读取下一行放入堆。
+- 直到所有小文件都归并完毕。
+
+- 关键点
+- 归并时每次只需在内存中维护每个小文件的一行数据，内存消耗极小。
+- 归并段数量过多时，可以分批归并，最后再归并一次。
+
+```
+import java.io.*;
+import java.util.*;
+
+public class ExternalSort {
+
+    // 日志行结构体，封装了一行日志内容、userId 以及对应的 BufferedReader
+    static class LogLine {
+        String line;           // 日志原始内容
+        String userId;         // 提取出来的 user_id
+        BufferedReader reader; // 该行来自的文件流
+
+        LogLine(String line, BufferedReader reader) {
+            this.line = line;
+            this.reader = reader;
+            // 假设user_id在每行前面，用空格分隔
+            this.userId = line.split("\\s+")[0];
+        }
+    }
+
+    // 分块排序：将大文件分块读入内存，排序后写入临时文件
+    public static List<File> splitAndSort(File inputFile, int chunkSizeMB) throws IOException {
+        List<File> tempFiles = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        List<String> buffer = new ArrayList<>();
+        String line;
+        int currentSize = 0;
+        while ((line = reader.readLine()) != null) {
+            buffer.add(line);
+            currentSize += line.length();
+            // 达到内存块大小限制，排序并写入临时文件
+            if (currentSize >= chunkSizeMB * 1024 * 1024) {
+                tempFiles.add(writeSortedChunk(buffer));
+                buffer.clear();
+                currentSize = 0;
+            }
+        }
+        // 处理最后剩余的数据
+        if (!buffer.isEmpty()) {
+            tempFiles.add(writeSortedChunk(buffer));
+        }
+        reader.close();
+        return tempFiles;
+    }
+
+    // 对内存中的一块数据排序并写入临时文件
+    private static File writeSortedChunk(List<String> buffer) throws IOException {
+        buffer.sort(Comparator.comparing(s -> s.split("\\s+")[0])); // 按user_id排序
+        File tempFile = File.createTempFile("sorted_chunk_", ".txt");
+        tempFile.deleteOnExit();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+        for (String s : buffer) {
+            writer.write(s);
+            writer.newLine();
+        }
+        writer.close();
+        return tempFile;
+    }
+
+    // 多路归并：将所有已排序的临时文件合并成一个大文件
+    public static void mergeSortedFiles(List<File> sortedFiles, File outputFile) throws IOException {
+        // 最小堆，按userId排序
+        PriorityQueue<LogLine> pq = new PriorityQueue<>(Comparator.comparing(l -> l.userId));
+        List<BufferedReader> readers = new ArrayList<>();
+        // 初始化，每个文件读取一行放入堆
+        for (File file : sortedFiles) {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            readers.add(reader);
+            String line = reader.readLine();
+            if (line != null) {
+                pq.add(new LogLine(line, reader));
+            }
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+        // 不断取出最小userId的行，写入输出文件，并补充新行进堆
+        while (!pq.isEmpty()) {
+            LogLine min = pq.poll();
+            writer.write(min.line);
+            writer.newLine();
+            String nextLine = min.reader.readLine();
+            if (nextLine != null) {
+                pq.add(new LogLine(nextLine, min.reader));
+            }
+        }
+        writer.close();
+        // 关闭所有文件流
+        for (BufferedReader r : readers) r.close();
+    }
+
+    // 主入口
+    public static void main(String[] args) throws IOException {
+        // 假设 args 里是所有日志文件名
+        int chunkSizeMB = 100; // 每块100MB
+        List<File> allTempFiles = new ArrayList<>();
+        // 对每个日志文件分块排序
+        for (String filename : args) {
+            File inputFile = new File(filename);
+            allTempFiles.addAll(splitAndSort(inputFile, chunkSizeMB));
+        }
+        File outputFile = new File("all_logs_sorted.txt");
+        // 多路归并所有临时文件
+        mergeSortedFiles(allTempFiles, outputFile);
+        System.out.println("排序完成，输出文件: " + outputFile.getAbsolutePath());
+    }
+}
+```
+
+## 总结
+
+数据结构知识掌握太差了，挂了.
+
+稍微好一点的公司，就要数据结构以及算法，第一次做这种笔试，真的没思路。感觉刷hot100也做不出来。
+
+数据结构和算法短期提升性价比不高，但是长远来看，数据结构一定要非常熟练，
+
+[https://www.bilibili.com/video/BV1E4411H73v?spm_id_from=333.788.videopod.episodes&vd_source=9d2498363dae85df492b06acf5e2dd6c&p=2](https://www.bilibili.com/video/BV1E4411H73v?spm_id_from=333.788.videopod.episodes&vd_source=9d2498363dae85df492b06acf5e2dd6c&p=2)  
+近期还是不打算提升，不如去学大模型的应用。
+
+# 同在科技-2025-4-23
+
+## 1.自我介绍
+
+个人信息 + 校园经历 + 实习经历 + 项目经历 + 个人技能掌握 + 目前学习技术
+
+## 2.封装缓存工具类怎么封装的
+
+先介绍使用缓存的问题 + 解决的逻辑 + 封装的逻辑 + 应用
+
+缓存穿透：
+
+缓存雪崩：
+
+缓存击穿：
+
+[https://www.yuque.com/hnsqls/rkzi78/mt4ywynev11fgn72](https://www.yuque.com/hnsqls/rkzi78/mt4ywynev11fgn72)
+
+封装的逻辑---主要是对所有的类都支持运用泛型
+
+```
+/**
+ * Redis 工具类
+ * * 方法1：将任意Java对象序列化为json并存储在string类型的key中，并且可以设置TTL过期时间
+ * * 方法2：将任意Java对象序列化为json并存储在string类型的key中，并且可以设置逻辑过期时间，用于处理缓存击穿问题
+ *
+ * * 方法3：根据指定的key查询缓存，并反序列化为指定类型，利用缓存空值的方式解决缓存穿透问题
+ * * 方法4：根据指定的key查询缓存，并反序列化为指定类型，需要利用逻辑过期解决缓存击穿问题
+ */
+@Component
+public class CacheClient {
+
+    private  final StringRedisTemplate stringRedisTemplate;
+
+    public CacheClient(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
+
+    //range
+
+    /**
+     * 方法1：将任意Java对象序列化为json并存储在string类型的key中，并且可以设置TTL过期时间
+     * @param key
+     * @param value
+     * @param time
+     * @param unit
+     */
+    public void set(String key , Object value, Long time, TimeUnit unit){
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value), time,unit);
+    }
+
+
+    /**
+     * 方法2：将任意Java对象序列化为json并存储在string类型的key中，并且可以设置逻辑过期时间，用于处理缓存击穿问题
+     * @param key  redis的key
+     * @param value
+     * @param time
+     * @param unit
+     */
+    public void setWithLogicalExpire(String key , Object value, Long time, TimeUnit unit){
+
+        //RedisData 是自定义类
+        RedisData redisData = new RedisData();
+        redisData.setData(value);
+        redisData.setExpireTime(LocalDateTime.now().plusSeconds(unit.toSeconds(time)));
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(redisData));
+    }
+
+
+    /**
+     *  方法3：根据指定的key查询缓存，并反序列化为指定类型，利用缓存空值的方式解决缓存穿透问题
+     * @param
+     * @param id
+     * @return
+     */
+    public <R,ID> R queryWithPassThrough(String keyPrefix, ID id, Class<R> type, Function<ID,R> dbFallback,Long time,TimeUnit unit){
+        String key = keyPrefix+ id;
+
+        // 1. 从redis中查询店铺缓存
+        String json = stringRedisTemplate.opsForValue().get(key);
+
+        //2.判断是否命中缓存  isnotblank false: "" or "/t/n" or "null"
+        if(StrUtil.isNotBlank(json)){
+            // 3.若命中则返回信息
+            R r = JSONUtil.toBean(json, type);
+            //            return Result.fail("没有该商户信息");
+            return r;
+        }
+        //数据穿透判空   不是null 就是空串 ""
+        if (json != null){
+            return null;
+        }
+        //4.没有命中缓存，查数据库，因为不知道操作那个库，函数式编程，逻辑交给调用者完成
+//       R r= getById(id); 交给调用者--》》函数式编程
+        R r = dbFallback.apply(id);
+        //5. 数据库为空，返回错误---》解决缓存穿透--》加入redis为空
+        if (r == null){
+            stringRedisTemplate.opsForValue().set(key,"",CACHE_NULL_TTL,TimeUnit.MINUTES);
+//            return Result.fail("没有该商户信息");
+            return null;
+        }
+
+        //6. 数据库不为空，返回查询的结果并加入缓存
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(r),time, unit);
+        return r;
+    }
+
+    /**
+     *  方法4：根据指定的key查询缓存，并反序列化为指定类型，需要利用逻辑过期解决缓存击穿问题
+     * @param id
+     * @return
+     */
+    public <R,ID> R queryWithLogicalExpire(String keyPrefix,ID id,Class<R> type,Function<ID,R>dbFallback,String lockPrefix,Long time,TimeUnit unit){
+        String key = keyPrefix+ id;
+
+        // 1. 从redis中查询店铺缓存
+        String json = stringRedisTemplate.opsForValue().get(key);
+
+        //2.判断数据是否存在（我们对于热点key设置永不过期）  isblank
+        if(StrUtil.isBlank(json)){
+            // 3.若未命中中则返回空
+            return null;
+        }
+
+        //4.若命中缓存 判断是否过期
+        RedisData redisData = JSONUtil.toBean(json, RedisData.class);
+        JSONObject data = (JSONObject) redisData.getData();
+        R r = JSONUtil.toBean(data, type);
+        LocalDateTime expireTime = redisData.getExpireTime();
+
+        //未过期 直接返回查询信息
+        if (expireTime.isAfter(LocalDateTime.now())){
+            return r;
+        }
+        //过期
+        // 重建缓存
+        // 获取锁
+        String lockKey = lockPrefix + id;
+        if (tryLock(lockKey)) {
+            //再次校验缓存是否未过期（线程1刚写入缓存然后释放锁，线程2在线程1释放锁的同时，执行到获得锁）
+            //  从redis中查询店铺缓存
+            json = stringRedisTemplate.opsForValue().get(key);
+
+            //2.判断数据是否存在（我们对于热点key设置永不过期）  isblank
+            if(StrUtil.isBlank(json)){
+                // 3.若未命中中则返回空
+                return null;
+            }
+
+            //4.若命中缓存 判断是否过期
+            redisData = JSONUtil.toBean(json, RedisData.class);
+            data = (JSONObject) redisData.getData();
+            r = JSONUtil.toBean(data, type);
+            expireTime = redisData.getExpireTime();
+
+            //未过期 直接返回查询信息
+            if (expireTime.isAfter(LocalDateTime.now())){
+                return r;
+            }
+
+            //二次校验过后还时过期的就新开线程重构缓存
+
+
+            // 获得锁,开启新线程，重构缓存 ，老线程直接返回过期信息
+            CACHE_REBUILD_EXECUTOR.submit( ()->{
+
+                try{
+                    //重建缓存
+                    //先查数据库 封装逻辑过期时间 再写redis
+                    R r1 = dbFallback.apply(id);
+
+                    this.setWithLogicalExpire(key, r1, time, unit);
+
+
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }finally {
+                    unlock(lockKey);
+                }
+            });
+
+        }
+        //未获得锁 直接返回无效信息
+        return r;
+    }
+
+    /**缓存穿透互斥锁解
+     *
+     * @param keyPrefix
+     * @param id
+     * @param type
+     * @param dbFallback
+     * @param time
+     * @param unit
+     * @return
+     */
+    public <R,ID>  R queryMutex(String keyPrefix, ID id, Class<R> type, Function<ID,R>dbFallback,String lockPrefix, Long time, TimeUnit unit) {
+        String key = keyPrefix + id;
+        //1.从redis中查询店铺缓存
+        String json = stringRedisTemplate.opsForValue().get(key);
+        //2.判断数据是否存在缓存
+        if (StrUtil.isNotBlank(json)) {
+            //2.1存在缓存
+            R r = JSONUtil.toBean(json, type);
+            return r;
+        }
+        //  2.2 是否缓存“”
+        //判断命中是否为空值  ""
+        if (json != null) {
+            return null;
+        }
+        // 2.3不存在缓存
+        // 3 缓存重建
+        // 3.1 获取互斥锁
+        String lockKey = lockPrefix + id;
+        R r = null;
+        try {
+        boolean isLock = tryLock(lockKey);
+        // 成功获取锁 - 》查数据库缓存重建
+        if (isLock) {
+            //二次校验 缓存是否有值
+            json = stringRedisTemplate.opsForValue().get(key);
+            //判断缓存是否存在
+            if (StrUtil.isNotBlank(json)) {
+                //存在缓存
+                r = JSONUtil.toBean(json, type);
+                return r;
+            }
+            if (json != null) {
+                //缓存为 ""
+                return null;
+            }
+            // 缓存不存在--》 查询数据库
+
+
+            //  查询数据库
+            r = dbFallback.apply(id);
+            if (r == null) {
+                //缓存空值
+                stringRedisTemplate.opsForValue().set(key, "", time, unit);
+            }
+            //缓存重建
+            stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(r), time, unit);
+            //返回数据
+            return r;
+        }
+        // 3.2 获取锁失败 -》休眠重试
+            //休眠
+            Thread.sleep(50);
+            // 递归重试
+            return queryMutex(keyPrefix, id, type, dbFallback, lockPrefix, time, unit);
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }finally {
+            unlock(lockKey);
+        }
+    }
+
+
+
+    //endrange
+    /**
+     * 线程池
+     */
+    private  static  final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(10);
+
+    /**
+     * 获取所
+     * @param key
+     * @return
+     */
+    private boolean tryLock(String key){
+        Boolean flag = stringRedisTemplate.opsForValue().setIfAbsent(key, "1", 10, TimeUnit.SECONDS);
+        return BooleanUtil.isTrue(flag);
+
+    }
+
+    /**
+     * 释放锁
+     * @param key
+     */
+    private  void unlock(String key){
+        stringRedisTemplate.delete(key);
+    }
+}
+```
+
+数据一致性问题： 看业务，强一致性和弱一致性；
+
+感觉可以在复习一下，还是有的说的，解决缓存的通用方法，设计思想（泛型），多线程，异步
+
+## 3.prompt 的编写
+
+[https://www.yuque.com/hnsqls/rkzi78/dcpbg93idy3lszy2#Y1h4O](https://www.yuque.com/hnsqls/rkzi78/dcpbg93idy3lszy2#Y1h4O)
+
+## 4.考勤系统的实现
+
+## 5.大模型生成图片的流程
+
+## 6.传统开发和大模型应用的优劣
+
+传统应用
+
+- 强逻辑确定性
+- 精确控制，高可靠性
+
+根据业务写代码，代码运行1w次，几年后，结果都是一样的，就体现强逻辑，精确控制，高可靠，但是不好处理一些模糊性，开放性的问题。
+
+大模型应用
+
+- 处理发散性，开放性，模糊性的问题
+- 复杂模式的识别
+
+所以要结合二者，选择二者的优点，进行开发，为现在传统的应用赋能。比如说大模型其实是没有记忆的，只不过可以用传统应用，用数据库存下来，在之后的交互，吧这些进行拼接起来。
+
+比如说
+
+- 智能客服
+- 文本分析，摘要
+- 多模态创作
+- 分析复杂数据，给出推测性的结论，比如说烟草，周期性的爆品
+- 情感分析
+- 智能体 自动化办公
+
+## 7.那些功能用大模型比较好
+
+大模型知识负责根据输入来分析推理数据，既没有上下文，也没有其他的功能，现在的DeepSeek，ChatGPT，等等都是传统开发和大模型的结合，用数据库实现持久化，以及上下问。大模型还是仅仅是对问题进行分析处理。所以都是二者来结合的。
+
+大模型落地的场景
+
+1. 智能客服
+2. 文本分析，摘要总结
+3. 多模态创作
+4. 数据分析，推测 比如说烟草，周期性的爆品，可以根据大模型分析的预测品类销量，进货（对于银行等要求准确度高的数据，还是使用传统开发来做。）
+5. 情感分析 （语音）
+6. 智能体，自动办公（审核评价 是否是恶意评价）
+
+## 8.ik 分词器
+
+## 9.大模型处理复杂任务，怎么处理，有什么规范
+
+复杂任务拆分处理，每一模块，编写特定prompt 让大模型专注这一功能进行分析。然后给其他的模块进行处理
+
+## 10.MCP 怎么开发的
+
+先聊 Function Calling 再聊 MCP ,再聊 mcp Sdk, 再聊spring ai 。
+
+## 11.什么样的场景需要function calling
+
+大模型的数据是滞后性的，要想获取最近或者获取训练库之外的数据，就需要function calling 去调用外部服务的接口，来获得外部数据。
+
+## 12.hot-Key 组件
+
+## 13.SQl优化
+
+监控
+
+分析 Explain
+
+索引失效
+
+回表
+
+多表查询
+
+## 14.什么情况创建索引
+
+数据量大
+
+查询字段
+
+联合字段 - 覆盖索引
+
+## 15.什么场景OOM内存溢出
+
+大对象
+
+递归调用
+
+## 16.有什么编程习惯避免内存溢出
+
+ThreadLocal
+
+## 17.自己的规划
+
+# 总结
+
+**缓存工具类要复习一下**，有多线程，异步，以及通用的设计。
+
+考勤系统，可以再说的具体一点，把难点提出来（多次上传，只记录一次数据，多次上传的数据中也有新增的数据；也就是如何去重的，数据库的设计， 可以提一下 insert ignore, 以及lamda 处理集合的使用分组使用）
+
+大模型生图的流程，要加上MQ,异步的介绍。
+

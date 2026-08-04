@@ -7,11 +7,39 @@
  */
 export function renderContribHeatmap (container, dayCounts, weeks = 53, tooltipFn) {
   container.empty();
+  // 清掉上次挂在 body 上的 tip，避免刷新后残留
+  document
+    .querySelectorAll(".contrib-heat-tooltip")
+    .forEach((el) => el.remove());
+
   container.createDiv({ cls: "contrib-chart-title", text: "写作贡献图谱" });
 
   const wrap = container.createDiv({ cls: "contrib-heatmap-wrap" });
-  const tip = container.createDiv({ cls: "contrib-heat-tooltip" });
+  const tip = document.body.createDiv({ cls: "contrib-heat-tooltip" });
   tip.style.display = "none";
+
+  const hideTip = () => {
+    tip.style.display = "none";
+  };
+  const placeTip = (ev, text) => {
+    tip.style.display = "block";
+    tip.setText(text);
+    tip.style.left = "0px";
+    tip.style.top = "0px";
+    const tw = tip.offsetWidth || 160;
+    const th = tip.offsetHeight || 28;
+    const pad = 10;
+    let left = ev.clientX + 14;
+    let top = ev.clientY + 16; // 光标下方，不挡格子
+    if (left + tw + pad > window.innerWidth) {
+      left = Math.max(pad, ev.clientX - tw - 12);
+    }
+    if (top + th + pad > window.innerHeight) {
+      top = Math.max(pad, ev.clientY - th - 12);
+    }
+    tip.style.left = `${left}px`;
+    tip.style.top = `${top}px`;
+  };
 
   const map = new Map((dayCounts || []).map((d) => [d.date, d]));
   const today = new Date();
@@ -20,13 +48,13 @@ export function renderContribHeatmap (container, dayCounts, weeks = 53, tooltipF
   start.setDate(start.getDate() - (weeks * 7 - 1));
   start.setDate(start.getDate() - start.getDay());
 
-  const cell = 11;
+  const cell = 12;
   const gap = 3;
   const labelW = 28;
-  const monthsH = 16;
+  const monthsH = 18;
   const cols = Math.ceil((today - start) / 86400000 / 7) + 1;
   const W = labelW + cols * (cell + gap) + 8;
-  const H = monthsH + 7 * (cell + gap) + 22;
+  const H = monthsH + 7 * (cell + gap) + 24;
 
   const max = Math.max(1, ...[...map.values()].map((d) => d.count || 0));
   const levels = (n) => {
@@ -94,7 +122,7 @@ export function renderContribHeatmap (container, dayCounts, weeks = 53, tooltipF
       lastMonth = cursor.getMonth();
       const mt = document.createElementNS(ns, "text");
       mt.setAttribute("x", String(labelW + col * (cell + gap)));
-      mt.setAttribute("y", "10");
+      mt.setAttribute("y", "12");
       mt.setAttribute("font-size", "9");
       mt.setAttribute("fill", "currentColor");
       mt.setAttribute("opacity", "0.55");
@@ -114,21 +142,9 @@ export function renderContribHeatmap (container, dayCounts, weeks = 53, tooltipF
     rect.setAttribute("height", String(cell));
     rect.setAttribute("rx", "2");
     rect.style.cursor = "pointer";
-    rect.addEventListener("mouseenter", (ev) => {
-      tip.style.display = "block";
-      tip.setText(tipText(item));
-      const wr = wrap.getBoundingClientRect();
-      tip.style.left = `${ev.clientX - wr.left + 12}px`;
-      tip.style.top = `${ev.clientY - wr.top - 28}px`;
-    });
-    rect.addEventListener("mousemove", (ev) => {
-      const wr = wrap.getBoundingClientRect();
-      tip.style.left = `${ev.clientX - wr.left + 12}px`;
-      tip.style.top = `${ev.clientY - wr.top - 28}px`;
-    });
-    rect.addEventListener("mouseleave", () => {
-      tip.style.display = "none";
-    });
+    rect.addEventListener("mouseenter", (ev) => placeTip(ev, tipText(item)));
+    rect.addEventListener("mousemove", (ev) => placeTip(ev, tipText(item)));
+    rect.addEventListener("mouseleave", hideTip);
     svg.appendChild(rect);
     cursor.setDate(cursor.getDate() + 1);
   }

@@ -4,35 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "293202b83def764c",
+        "id": "3f1276245058bc9e",
         "type": "tabs",
         "children": [
           {
-            "id": "844cc2739f01512c",
+            "id": "e5b84f9b88c6d27e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测试与运维/使用apifox工具获得掘金的发帖接口.md",
+                "file": "面经/操作系统.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "使用apifox工具获得掘金的发帖接口"
+              "title": "操作系统"
             }
           },
           {
-            "id": "ca9dd347bd119b8a",
-            "type": "leaf",
-            "state": {
-              "type": "cetide-git-scm",
-              "state": {},
-              "icon": "git-branch",
-              "title": "源代码管理"
-            }
-          },
-          {
-            "id": "963cd287a7f580e5",
+            "id": "d84631e88b552c3a",
             "type": "leaf",
             "state": {
               "type": "cetide-contrib-view",
@@ -42,87 +32,17 @@
             }
           },
           {
-            "id": "9e1b960f743e9ee3",
+            "id": "2e7cff8d602b3461",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "测试与运维/Docker.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Docker"
-            }
-          },
-          {
-            "id": "deb9278b4aae45ff",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "项目方案/Ubuntu 上安装 GCC.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Ubuntu 上安装 GCC"
-            }
-          },
-          {
-            "id": "3a36f369c1e56c60",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
+              "type": "cetide-git-scm",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
-            }
-          },
-          {
-            "id": "1937e52dfa0e66cd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "项目方案/Nginx.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Nginx"
-            }
-          },
-          {
-            "id": "7cefdb4a405727f7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "项目方案/Rust.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Rust"
-            }
-          },
-          {
-            "id": "8db4af2987f71613",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "项目方案/异步系统设计/异步系统设计.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "异步系统设计"
+              "icon": "git-branch",
+              "title": "源代码管理"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -299,8 +219,23 @@
       "cetide-contrib:写作贡献图谱": false
     }
   },
-  "active": "963cd287a7f580e5",
+  "active": "2e7cff8d602b3461",
   "lastOpenFiles": [
+    "八股.zip",
+    "微服务/深度学习.md",
+    "微服务/基于Java的AI行为分析.md",
+    "微服务/Seata 的 AT 和 TCC 模式.md",
+    "微服务/Nacos.md",
+    "项目方案/并发爬虫教程.md",
+    "面经/Java.md",
+    "面经/操作系统.md",
+    "面经/AI大模型.md",
+    "面经/Go.md",
+    "项目方案/领券.md",
+    "面经",
+    "项目方案/Rust.md",
+    "测试与运维/使用apifox工具获得掘金的发帖接口.md",
+    "项目方案/异步系统设计/异步系统设计.md",
     "项目方案/图片压缩技术.md",
     "项目方案/面试官在筛选简历的时候比较看重什么？.md",
     "项目方案/准备面试的时候，具体哪些知识点是重点呢？.md",
@@ -313,20 +248,6 @@
     "项目方案/资料.md",
     "项目方案/开源项目.md",
     "项目方案/鲁棒性.md",
-    "项目方案/流程图制作练习.md",
-    "项目方案/压力测试.md",
-    "项目方案/幂等性[✔].md",
-    "项目方案/架构师.md",
-    "项目方案/一致性 和 高可用和容错性.md",
-    "项目方案/OpenFeign.md",
-    "项目方案/SSH相关.md",
-    "项目方案/注册Zoho邮箱.md",
-    "项目方案/ngrok内网穿透工具.md",
-    "项目方案/内网穿透方法2.md",
-    "项目方案/内网穿透技巧.md",
-    "项目方案/日志可视化业务解决方案.md",
-    "项目方案/手机APP相关基础知识以及FinClip使用体验文档.md",
-    "微服务/不同的分页方案.md",
     "前端",
     "Agent开发",
     "Pasted image 20260721163452.png",
@@ -337,7 +258,6 @@
     "项目方案/手写系列",
     "项目方案",
     "网络协议",
-    "lFCt5qVH_image_mianshiya.png",
-    "未命名.base"
+    "lFCt5qVH_image_mianshiya.png"
   ]
 }
