@@ -1,0 +1,240 @@
+{
+  "main": {
+    "id": "720ac91868df09d4",
+    "type": "split",
+    "children": [
+      {
+        "id": "293202b83def764c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "844cc2739f01512c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Java集合/01-集合框架总览.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01-集合框架总览"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6f2ad4660e2e5776",
+    "type": "split",
+    "children": [
+      {
+        "id": "60f1990899ed270d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "63aa962fd3c274f2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "88ea8a166e9d26c5",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "栈内存分配越大越好吗？",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "0f20cf4b413632ec",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "b489c2ea345f44d9",
+    "type": "split",
+    "children": [
+      {
+        "id": "4e52bec9c69dd346",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fd27803543ff5f43",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "JVM/10-OOM泄漏与调优排查.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "10-OOM泄漏与调优排查 的反向链接列表"
+            }
+          },
+          {
+            "id": "131a854c263fcced",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "874e7d3be9941c96",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "ad6f460f6ebc8a78",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "7908afea9df5f2ea",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Go基础/06-接口与类型断言.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "06-接口与类型断言 的大纲"
+            }
+          },
+          {
+            "id": "038e6a52f9841cfe",
+            "type": "leaf",
+            "state": {
+              "type": "cetide-bagu-view",
+              "state": {},
+              "icon": "calendar-check",
+              "title": "秋招八股"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 673.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "cetide-bagu:秋招八股复习": false
+    }
+  },
+  "active": "63aa962fd3c274f2",
+  "lastOpenFiles": [
+    "LICENSE",
+    "Java集合/00-知识总览.md",
+    "Go基础/03-数组与切片.md",
+    "Go基础/05-函数方法与闭包.md",
+    "Go基础/10-题单总索引.md",
+    "Go基础/07-defer-panic-error.md",
+    "Go基础/06-接口与类型断言.md",
+    "Go基础/02-指针与内存.md",
+    "Go基础/01-变量常量与基础类型.md",
+    "Go基础/00-知识总览.md",
+    "Java基础/01-JDK-JRE-JVM与字节码.md",
+    "Java基础/00-知识总览.md",
+    "Java并发/00-知识总览.md",
+    "Go基础/09-结构体语法与其它.md",
+    "Go基础/08-字符串与拷贝.md",
+    "Go基础/04-Map与引用类型.md",
+    "JVM/02-运行时数据区.md",
+    "未命名.base",
+    "JVM/01-组成与执行流程.md",
+    "JVM/00-知识总览.md",
+    "JVM/10-OOM泄漏与调优排查.md",
+    "Java并发/10-题单总索引.md",
+    "Java并发/09-死锁协作与场景题.md",
+    "Java并发/08-ThreadLocal专题.md",
+    "Java并发/07-阻塞队列与原子类.md",
+    "Java并发/06-并发工具与异步.md",
+    "Java并发/04-AQS-CAS与显式锁.md",
+    "Java并发",
+    "lFCt5qVH_image_mianshiya.png",
+    "Pasted image 20260721163452.png",
+    "消息队列",
+    "MyBatis",
+    "MySQL",
+    "Go基础",
+    "JVM",
+    "Java基础",
+    "Java集合",
+    "计算机网络"
+  ]
+}

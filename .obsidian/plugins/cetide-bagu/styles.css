@@ -1,0 +1,573 @@
+/* 秋招八股复习 */
+
+.bagu-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px 14px 16px;
+  gap: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.bagu-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bagu-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bagu-sync-btn {
+  font-size: 0.8em;
+  padding: 2px 10px;
+}
+
+.bagu-stats {
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.bagu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding-bottom: 8px;
+}
+
+.bagu-tab {
+  border: none;
+  background: transparent;
+  padding: 6px 12px;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-size: 0.9em;
+  opacity: 0.75;
+}
+
+.bagu-tab.is-on {
+  background: var(--background-modifier-hover);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.bagu-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bagu-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.bagu-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.bagu-view,
+.bagu-view .bagu-card,
+.bagu-view .bagu-body,
+.bagu-log-modal {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.bagu-selectable,
+.bagu-answer,
+.bagu-answer *,
+.bagu-question,
+.bagu-mine,
+.bagu-ai-feedback,
+.bagu-ai-panel,
+.bagu-log-modal pre {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  cursor: text;
+}
+
+.bagu-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bagu-meta-row .bagu-meta {
+  margin-bottom: 0;
+  flex: 1;
+  min-width: 120px;
+}
+
+.bagu-fav-btn {
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 0.85em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bagu-fav-btn.is-on {
+  border-color: transparent;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.bagu-pane-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.bagu-pane-title-row .bagu-pane-title {
+  margin-bottom: 0;
+}
+
+.bagu-copy-btn {
+  border: 1px solid var(--background-modifier-border);
+  background: transparent;
+  border-radius: 6px;
+  padding: 1px 8px;
+  font-size: 0.78em;
+  cursor: pointer;
+  opacity: 0.85;
+  user-select: none;
+}
+
+.bagu-copy-btn:hover {
+  opacity: 1;
+  background: var(--background-modifier-hover);
+}
+
+.bagu-chip {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.8em;
+  cursor: pointer;
+  background: var(--background-secondary);
+  user-select: none;
+}
+
+.bagu-chip.is-on {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: transparent;
+}
+
+.bagu-mode-group {
+  display: inline-flex;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bagu-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.bagu-mode-btn.is-on {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.bagu-plan-card {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--background-secondary);
+}
+
+.bagu-progress {
+  margin-top: 10px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--background-modifier-border);
+  overflow: hidden;
+}
+
+.bagu-progress-fill {
+  height: 100%;
+  background: var(--interactive-accent);
+  border-radius: 999px;
+}
+
+.bagu-tip {
+  font-size: 0.82em;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.bagu-card {
+  flex: 1;
+  min-height: 160px;
+  overflow: auto;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: var(--background-primary);
+}
+
+.bagu-meta {
+  font-size: 0.8em;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+.bagu-question {
+  font-size: 1.15em;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.bagu-write-area {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  margin: 8px 0 8px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-family: inherit;
+  font-size: 0.95em;
+  box-sizing: border-box;
+}
+
+.bagu-answer-editor {
+  margin-bottom: 8px;
+}
+
+.bagu-asr-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.bagu-asr-tip {
+  flex: 1;
+  min-width: 140px;
+  margin: 0;
+}
+
+.bagu-mic-btn {
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 0.85em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bagu-mic-btn.is-recording {
+  background: #c0392b;
+  color: #fff;
+  border-color: transparent;
+  animation: bagu-mic-pulse 1.2s ease-in-out infinite;
+}
+
+.bagu-mic-btn.is-busy {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+@keyframes bagu-mic-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.bagu-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.bagu-compare-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.bagu-stack-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bagu-task {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+}
+
+.bagu-task.is-done {
+  border-color: var(--interactive-accent);
+  opacity: 0.95;
+}
+
+.bagu-task-title {
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.bagu-charts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.bagu-chart-block {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--background-secondary);
+  overflow-x: auto;
+}
+
+.bagu-chart-title {
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.bagu-svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  color: var(--text-normal);
+}
+
+.bagu-heatmap-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.bagu-heat-tooltip {
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  color: var(--text-normal);
+}
+
+.bagu-heat-lv0 { fill: var(--background-modifier-border); opacity: 0.55; }
+.bagu-heat-lv1 { fill: var(--interactive-accent); opacity: 0.35; }
+.bagu-heat-lv2 { fill: var(--interactive-accent); opacity: 0.55; }
+.bagu-heat-lv3 { fill: var(--interactive-accent); opacity: 0.75; }
+.bagu-heat-lv4 { fill: var(--interactive-accent); opacity: 1; }
+
+.bagu-bank-bar {
+  align-items: center;
+}
+
+.bagu-bank-search {
+  flex: 1;
+  min-width: 140px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+
+.bagu-bank-select {
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+
+.bagu-bank-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bagu-table tr.is-picked td {
+  background: rgba(var(--interactive-accent-rgb, 80, 140, 220), 0.12);
+}
+
+.bagu-row-click {
+  cursor: pointer;
+}
+
+.bagu-row-click:hover {
+  background: var(--background-modifier-hover);
+}
+
+.bagu-log-modal h3 {
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 720px) {
+  .bagu-compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bagu-pane-title {
+  font-size: 0.8em;
+  font-weight: 600;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+
+.bagu-answer,
+.bagu-mine {
+  font-size: 0.92em;
+  line-height: 1.55;
+}
+
+.bagu-mine {
+  white-space: pre-wrap;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--background-secondary);
+}
+
+.bagu-hidden-hint {
+  opacity: 0.55;
+  font-style: italic;
+  margin: 16px 0;
+}
+
+.bagu-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.bagu-grade-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.bagu-empty {
+  opacity: 0.7;
+  padding: 24px 8px;
+  text-align: center;
+}
+
+.bagu-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.bagu-stat-cell {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  background: var(--background-secondary);
+}
+
+.bagu-stat-v {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.bagu-stat-k {
+  font-size: 0.78em;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.bagu-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+}
+
+.bagu-table th,
+.bagu-table td {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.bagu-ai-panel {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+}
+
+.bagu-ai-score {
+  font-size: 1.8em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.bagu-ai-band {
+  font-size: 0.9em;
+  margin: 4px 0 8px;
+  opacity: 0.85;
+}
+
+.bagu-ai-feedback {
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}

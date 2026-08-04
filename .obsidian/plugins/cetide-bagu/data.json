@@ -1,0 +1,27 @@
+{
+  "settings": {
+    "excludePatterns": [
+      "00-知识总览",
+      "题单总索引"
+    ],
+    "writeRequireText": false,
+    "cooldownSize": 12,
+    "dailyNewLimit": 15,
+    "dailyReviewLimit": 40,
+    "scheduler": "ebbinghaus",
+    "ebbinghausSteps": [
+      1,
+      2,
+      4,
+      7,
+      15,
+      30,
+      60
+    ],
+    "remindOnOpen": true,
+    "preferredModules": [
+      "JVM",
+      "Java基础"
+    ]
+  }
+}

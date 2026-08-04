@@ -1,0 +1,16 @@
+{
+  "name": "cetide-bagu",
+  "version": "2.0.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "watch": "node esbuild.config.mjs --watch"
+  },
+  "dependencies": {
+    "sql.js": "^1.12.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

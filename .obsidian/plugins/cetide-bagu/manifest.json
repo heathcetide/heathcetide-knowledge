@@ -1,0 +1,10 @@
+{
+  "id": "cetide-bagu",
+  "name": "秋招八股复习",
+  "version": "2.4.0",
+  "minAppVersion": "1.4.0",
+  "description": "秋招八股：题库浏览自选、双任务、收藏、本地 Whisper ASR、Ollama 评分。",
+  "author": "cetide",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}
