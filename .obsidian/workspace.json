@@ -68,6 +68,48 @@
               "icon": "lucide-git-fork",
               "title": "关系图谱"
             }
+          },
+          {
+            "id": "1937e52dfa0e66cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "项目方案/Nginx.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Nginx"
+            }
+          },
+          {
+            "id": "7cefdb4a405727f7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "项目方案/Rust.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Rust"
+            }
+          },
+          {
+            "id": "8db4af2987f71613",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "项目方案/异步系统设计/异步系统设计.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "异步系统设计"
+            }
           }
         ],
         "currentTab": 1
@@ -248,43 +290,43 @@
   },
   "active": "63aa962fd3c274f2",
   "lastOpenFiles": [
-    "项目方案/后端通用.md",
-    "项目方案/防抖节流实现.md",
-    "项目方案/Ubuntu 上安装 GCC.md",
-    "项目方案/WebRTC学习.md",
-    "项目方案/音频常识.md",
-    "项目方案/ICE.md",
-    "测试与运维/🐳 Docker 命令详解.md",
-    "测试与运维/🐳 Docker 基础使用.md",
-    "测试与运维/🐳 Docker.md",
-    "日志/真实面经.md",
-    "日志/面经.md",
-    "日志/文件上传方案：使用临时密钥进行前端文件上传.md",
-    "日志/Java高并发项目方向分析.md",
-    "日志/如何手动部署SSL证书实现https.md",
-    "日志/如何优化后端文件上传部分的整体设计.md",
-    "日志/实习日志第七天.md",
-    "日志/设计文章阅读量计数功能.md",
-    "日志/实习日志第八天.md",
-    "日志",
-    "未命名.md",
-    "项目方案/异步系统设计/Agent 服务.md",
-    "项目方案/异步系统设计/线程池.md",
-    "项目方案/异步系统设计/简单实战案例.md",
-    "项目方案/异步系统设计/同步 vs 异步 _ 阻塞 vs 非阻塞.md",
+    "前端/Angular.js框架.md",
+    "前端/Taro.md",
+    "前端/小程序开发.md",
+    "前端/UniApp项目.md",
+    "前端/JavaScript.md",
+    "前端/Pinia使用.md",
+    "前端/快速实现博客的框架hexo.md",
+    "前端/代码编辑器的组件技术.md",
+    "前端/GSAP技术.md",
+    "前端/Shadcn UI.md",
+    "前端/Master go 直接生成管理端页面.md",
+    "前端/YApiPro接口测试工具.md",
+    "前端/前端环境.md",
+    "前端/QrCodeJS实现前端二维码.md",
+    "前端/前端面试题.md",
+    "前端",
+    "Agent开发/AI大模型.md",
+    "Agent开发/RAG.md",
+    "Agent开发",
+    "客户端开发/基础学习.md",
+    "客户端开发/Dart的面向对象教程.md",
+    "客户端开发/命令行创建Flutter项目.md",
+    "客户端开发/Flutter的知识.md",
+    "客户端开发/Dart.md",
+    "客户端开发/Init Flutter Demo.md",
+    "客户端开发/依赖.md",
+    "客户端开发/解析json.md",
     "项目方案/异步系统设计/异步概念.md",
-    "项目方案/异步系统设计/异步系统设计.md",
+    "Pasted image 20260721163452.png",
+    "客户端开发",
+    "日志",
     "项目方案/异步系统设计",
-    "微服务/Spring Cloud Alibaba.md",
     "微服务",
     "项目方案/手写系列",
     "项目方案",
     "网络协议",
     "lFCt5qVH_image_mianshiya.png",
-    "未命名.base",
-    "八股/计算机网络",
-    "八股/消息队列",
-    "八股/Redis",
-    "Pasted image 20260721163452.png"
+    "未命名.base"
   ]
 }
