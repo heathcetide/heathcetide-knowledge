@@ -44,6 +44,30 @@
               "icon": "lucide-file",
               "title": "Docker"
             }
+          },
+          {
+            "id": "deb9278b4aae45ff",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "项目方案/Ubuntu 上安装 GCC.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ubuntu 上安装 GCC"
+            }
+          },
+          {
+            "id": "3a36f369c1e56c60",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
+            }
           }
         ],
         "currentTab": 1
@@ -80,7 +104,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "栈内存分配越大越好吗？",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -222,44 +246,45 @@
       "cetide-git:源代码管理": false
     }
   },
-  "active": "9e1b960f743e9ee3",
+  "active": "63aa962fd3c274f2",
   "lastOpenFiles": [
+    "项目方案/后端通用.md",
+    "项目方案/防抖节流实现.md",
+    "项目方案/Ubuntu 上安装 GCC.md",
+    "项目方案/WebRTC学习.md",
+    "项目方案/音频常识.md",
+    "项目方案/ICE.md",
+    "测试与运维/🐳 Docker 命令详解.md",
+    "测试与运维/🐳 Docker 基础使用.md",
+    "测试与运维/🐳 Docker.md",
+    "日志/真实面经.md",
+    "日志/面经.md",
+    "日志/文件上传方案：使用临时密钥进行前端文件上传.md",
+    "日志/Java高并发项目方向分析.md",
+    "日志/如何手动部署SSL证书实现https.md",
+    "日志/如何优化后端文件上传部分的整体设计.md",
+    "日志/实习日志第七天.md",
+    "日志/设计文章阅读量计数功能.md",
+    "日志/实习日志第八天.md",
+    "日志",
+    "未命名.md",
+    "项目方案/异步系统设计/Agent 服务.md",
+    "项目方案/异步系统设计/线程池.md",
+    "项目方案/异步系统设计/简单实战案例.md",
+    "项目方案/异步系统设计/同步 vs 异步 _ 阻塞 vs 非阻塞.md",
+    "项目方案/异步系统设计/异步概念.md",
+    "项目方案/异步系统设计/异步系统设计.md",
+    "项目方案/异步系统设计",
+    "微服务/Spring Cloud Alibaba.md",
+    "微服务",
+    "项目方案/手写系列",
+    "项目方案",
+    "网络协议",
     "lFCt5qVH_image_mianshiya.png",
     "未命名.base",
-    "八股/计算机网络/13-实时通信-WebRTC-SIP-RTP.md",
-    "测试与运维/使用apifox工具获得掘金的发帖接口.md",
-    "八股/计算机网络/09-代理负载与网络IO.md",
-    "八股/计算机网络/14-WebSocket.md",
-    "八股/计算机网络/12-gRPC与网关治理.md",
-    "八股/计算机网络/11-抓包看图说话.md",
-    "八股/计算机网络/10-HTTP2与QUIC.md",
-    "八股/计算机网络/08-高频对比与场景题.md",
-    "八股/计算机网络/07-输入URL全过程.md",
-    "八股/计算机网络/01-网络分层模型.md",
-    "八股/计算机网络/06-DNS与应用层.md",
-    "八股/计算机网络/05-HTTPS与安全.md",
-    "八股/计算机网络/03-TCP与UDP.md",
-    "八股/计算机网络/04-HTTP.md",
-    "八股/计算机网络/02-IP与网络层.md",
-    "八股/计算机网络/00-知识总览.md",
     "八股/计算机网络",
-    "八股/消息队列/06-题单总索引.md",
-    "八股/消息队列/05-三大对比与选型.md",
-    "八股/消息队列/04-RocketMQ.md",
-    "八股/消息队列/03-RabbitMQ.md",
-    "八股/消息队列/02-Kafka.md",
-    "八股/消息队列/01-基础概念与通用可靠性.md",
-    "八股/消息队列/00-知识总览.md",
     "八股/消息队列",
-    "八股/Redis/17-查漏补缺.md",
-    "八股/Redis/16-秒杀系统设计.md",
     "八股/Redis",
-    "八股/MySQL",
-    "八股/MyBatis",
-    "八股/Java集合",
-    "八股/Java并发",
-    "八股/Java基础",
-    "八股/JVM",
     "Pasted image 20260721163452.png"
   ]
 }
