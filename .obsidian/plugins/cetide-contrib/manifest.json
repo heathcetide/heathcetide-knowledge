@@ -1,0 +1,10 @@
+{
+  "id": "cetide-contrib",
+  "name": "Cetide Contrib",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "写作贡献图谱：文档数、字数、每日编辑/新建热力图，支持 Git 历史回填。",
+  "author": "heathcetide",
+  "authorUrl": "https://github.com/heathcetide",
+  "isDesktopOnly": true
+}
