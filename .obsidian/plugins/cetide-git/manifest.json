@@ -1,0 +1,10 @@
+{
+  "id": "cetide-git",
+  "name": "Cetide Git",
+  "version": "1.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "VS Code 风格 Git 源码管理：主区域分栏 diff、Ollama 生成 commit、暂存/提交/同步。",
+  "author": "cetide",
+  "authorUrl": "",
+  "isDesktopOnly": true
+}
