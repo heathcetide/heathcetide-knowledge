@@ -370,6 +370,110 @@ REST 是架构风格：资源用 URL 标识，用 HTTP 方法表达动作，用�
 
 ---
 
+### Q17. Cookie 有哪些关键属性？和安全有什么关系？
+
+| 属性 | 作用 |
+| --- | --- |
+| `Domain` / `Path` | 哪些主机/路径会带上 |
+| `Expires` / `Max-Age` | 持久化 vs 会话 Cookie |
+| `Secure` | 只在 HTTPS 发送 |
+| `HttpOnly` | JS 读不到，缓解 XSS 偷 Cookie |
+| `SameSite` | `Strict/Lax/None`，缓解 CSRF |
+| `Partitioned` 等 | 新隐私相关（了解即可） |
+
+口诀：**敏感会话 Cookie 尽量 Secure + HttpOnly + SameSite。**
+
+---
+
+### Q18. ETag / Last-Modified 协商缓存细节？
+
+1. 首次响应带 `ETag` 或 `Last-Modified`  
+2. 再请求带 `If-None-Match` / `If-Modified-Since`  
+3. 未变 → **304**，省流量；变了 → 200 + 新正文  
+
+强缓存（`Cache-Control: max-age`）未过期**根本不发请求**；过期后才走协商。  
+`ETag` 分强/弱校验；内容哈希做 ETag 常见。
+
+---
+
+### Q19. 什么是 HTTP Range 请求？断点续传怎么做？
+
+客户端头：`Range: bytes=0-1023`  
+服务端：`206 Partial Content` + `Content-Range`  
+
+用途：断点续传、多线程下载、视频拖拽。  
+条件：资源支持范围；注意鉴权与缓存。
+
+---
+
+### Q20. HTTP Pipeline 是什么？为什么少用？
+
+HTTP/1.1 允许一条连接上连续发多个请求不等响应（流水线）。  
+现实：队头阻塞、实现 buggy、代理不友好 → **基本被弃用**；改用并发连接或 HTTP/2 多路复用。
+
+---
+
+### Q21. Content-Length 和 Transfer-Encoding 能同时出现吗？
+
+规范上 chunked 时不应再依赖 Content-Length 定界；实现若两者都有容易歧义，安全上曾有「请求走私」利用。  
+网关/代理要统一归一化报文边界。详见 [[15-拓展知识与场景题]] 请求走私。
+
+---
+
+### Q22. 401、403、404、429、502、504 怎么向面试官区分？
+
+| 码 | 一句话 |
+| --- | --- |
+| 401 | 未认证（没登录/Token 无效） |
+| 403 | 已认证但没权限 / 拒绝 |
+| 404 | 资源不存在（或故意隐藏） |
+| 429 | 限流太快 |
+| 502 | 网关上游无效响应 |
+| 504 | 网关等上游超时 |
+
+---
+
+### Q23. 什么是幂等键？POST 如何做成可重试？
+
+客户端生成唯一 `Idempotency-Key`，服务端对同一键只执行一次业务副作用。  
+网络超时重试 POST 时靠它避免重复下单——**业务幂等**补 HTTP 语义不足。
+
+---
+
+### Q24. HTTP 内容协商 Accept 系列怎么工作？
+
+客户端声明能力：`Accept` / `Accept-Language` / `Accept-Encoding`  
+服务端选表示，可用 `Vary` 告诉缓存「按哪些头区分变体」。  
+`Accept-Encoding: gzip, br` → 压缩传输，浏览器自动解。
+
+---
+
+### Q25. 浏览器同源下 Cookie 自动携带，跨站呢？
+
+- 同站请求：按 Domain/Path/SameSite 规则带 Cookie  
+- 跨站：受 **SameSite** 与第三方 Cookie 策略限制越来越严  
+- CORS 带 Cookie 需 `credentials` + 服务端 `Access-Control-Allow-Credentials`，且 `Allow-Origin` 不能是 `*`
+
+---
+
+## 拓展知识
+
+### Q26. 什么是 HTTP 请求走私（Request Smuggling）？（拓展）
+
+前端（CDN/反代）与后端对「请求边界」解析不一致（CL/TE 歧义）时，攻击者可把下一个请求「藏」进当前请求，污染队列。  
+防：统一用 HTTP/2 到源、规范化头、升级代理、拒绝歧义报文。
+
+---
+
+### Q27. GraphQL / gRPC-Web 和「纯 REST」在 HTTP 上的差异？（拓展）
+
+- GraphQL：常一个 POST 端点，语义在 body；缓存/网关要另做  
+- gRPC-Web：浏览器侧借 HTTP/1.1 或 H2 封装，与原生 gRPC 有代理转换  
+
+选型别只比「好不好看」，要比**缓存、调试、流式、多语言、网关生态**。
+
+---
+
 ## 关联
 
-- [[05-HTTPS与安全]] · [[03-TCP与UDP]] · [[06-DNS与应用层]] · [[08-高频对比与场景题]] · [[09-代理负载与网络IO]]
+- [[05-HTTPS与安全]] · [[03-TCP与UDP]] · [[06-DNS与应用层]] · [[10-HTTP2与QUIC]] · [[15-拓展知识与场景题]]
