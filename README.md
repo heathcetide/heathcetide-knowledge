@@ -87,16 +87,28 @@
 
 ## 使用方式
 
+### 本机写作（Git 双向同步）
+
 1. Clone 本仓库，用 [Obsidian](https://obsidian.md/) 打开根目录作为 Vault  
 2. 从 `八股/` 按上表路线复习；笔记多为「问题 + 参考答案」，便于默写对照  
 3. 工程与部署类内容见 `项目方案/`、`测试与运维/`  
-4. （可选）本地插件：`cetide-bagu` 刷题复习；`cetide-contrib` 写作贡献图谱（文档数/字数/热力图）；`cetide-git` 源码管理  
+4. （可选）本地插件：`cetide-bagu` 刷题复习；`cetide-contrib` 写作贡献图谱；`cetide-git` 源码管理（commit / push / pull）  
 
 ```bash
 git clone git@github.com:heathcetide/heathcetide-knowledge.git
 # 用 Obsidian → Open folder as vault → 选择本仓库根目录
 ```
 
+### 网页只读（GitHub 拉取展示）
+
+多端浏览不必装 Obsidian：打开静态阅读器，从 GitHub `main` 拉目录与 Markdown（只读，不写回）。
+
+- 在线地址（启用 Pages 后）：[https://heathcetide.github.io/heathcetide-knowledge/](https://heathcetide.github.io/heathcetide-knowledge/)
+- 源码：[`web/`](web/)（Trees API 列 `.md` + `raw.githubusercontent.com` 取正文）
+- 本地预览：在仓库根目录起静态服务后访问 `/web/`，例如 `npx serve .` 再打开对应路径
+- 首次使用需在仓库 **Settings → Pages** 选择 **GitHub Actions** 作为源；之后 push `web/` 会自动部署
+
+分工：**本机 git push 更新知识库 → 网页自动读到最新 `main`。**
 ---
 
 ## 更新日志
@@ -105,6 +117,7 @@ git clone git@github.com:heathcetide/heathcetide-knowledge.git
 
 - 新增根目录 README（仓库说明、学习路线、徽章）
 - 新增 Obsidian 插件 `cetide-contrib`：写作贡献图谱（文档数/字数/热力图/Git 回填）
+- 新增 `web/` GitHub 只读网页阅读器 + Pages 部署工作流
 - 持续加厚 Java 并发、JVM、Java 基础等八股模块
 - 八股题库收拢至 `八股/`，配合本地刷题工作流
 
