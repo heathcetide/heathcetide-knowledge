@@ -101,10 +101,10 @@ git clone git@github.com:heathcetide/heathcetide-knowledge.git
 
 ### 网页只读（Pages 静态快照）
 
-多端浏览不必装 Obsidian：阅读器在部署时打包 Markdown，**运行时不打 GitHub API**（避免未认证 60 次/小时限流）。
+多端浏览不必装 Obsidian：阅读器在部署时打包 Markdown，**运行时不打 GitHub API**。单页布局（左侧目录 + 右侧滚轮阅读），并支持按 `[[wiki 链接]]` 生成的知识图谱。
 
 - 在线地址：[https://heathcetide.github.io/heathcetide-knowledge/](https://heathcetide.github.io/heathcetide-knowledge/)
-- 源码：[`web/`](web/)，构建脚本 `node web/build.mjs` → 输出 `_site/`
+- 源码：[`web/`](web/)，构建：`node web/build.mjs` → `_site/`（含 `manifest.json` / `graph.json` / `content/`）
 - 本地预览：
 
 ```bash
@@ -112,8 +112,8 @@ node web/build.mjs
 npx serve _site
 ```
 
-- 首次使用：仓库 **Settings → Pages → Source** 选 **GitHub Actions**；Custom domain 留空  
-- push 笔记或 `web/` 后 Actions 会重新打包部署
+- 顶栏 **阅读 / 图谱**；图谱支持全库与当前笔记局部一跳邻居  
+- Pages：Source 选 **GitHub Actions**，Custom domain 留空
 
 分工：**本机 git push → Pages 重新构建快照 → 网页只读浏览。**
 ---

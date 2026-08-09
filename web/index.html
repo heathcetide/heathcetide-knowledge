@@ -6,7 +6,7 @@
     <title>heathcetide Knowledge</title>
     <meta
       name="description"
-      content="heathcetide Knowledge — 从 GitHub 只读同步的个人学习笔记阅读器"
+      content="heathcetide Knowledge — 单页阅读器与 Obsidian 风格知识图谱"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,24 +20,37 @@
   <body>
     <div class="app">
       <header class="topbar">
-        <button
-          type="button"
-          class="btn btn-ghost menu-btn"
-          id="menuBtn"
-          aria-label="打开目录"
-        >
+        <button type="button" class="btn btn-ghost menu-btn" id="menuBtn" aria-label="打开目录">
           目录
         </button>
         <a class="brand" href="./" id="brandLink">
           <span class="brand-name">heathcetide Knowledge</span>
-          <span class="brand-sub">GitHub 只读同步 · 学习笔记</span>
+          <span class="brand-sub">单页阅读 · 知识图谱</span>
         </a>
+
+        <div class="view-switch" role="tablist" aria-label="视图切换">
+          <button type="button" class="view-btn active" data-view="read" id="viewRead">
+            阅读
+          </button>
+          <button type="button" class="view-btn" data-view="graph" id="viewGraph">
+            图谱
+          </button>
+        </div>
+
         <div class="topbar-actions">
-          <button type="button" class="btn" id="refreshBtn" title="清除缓存并重新拉取">
+          <div class="graph-tools" id="graphTools" hidden>
+            <button type="button" class="btn btn-sm active" data-gmode="global" id="gGlobal">
+              全库
+            </button>
+            <button type="button" class="btn btn-sm" data-gmode="local" id="gLocal">
+              局部
+            </button>
+          </div>
+          <button type="button" class="btn btn-sm" id="refreshBtn" title="清除缓存并重载">
             刷新
           </button>
           <a
-            class="btn btn-primary"
+            class="btn btn-sm btn-primary"
             id="repoLink"
             href="https://github.com/heathcetide/heathcetide-knowledge"
             target="_blank"
@@ -56,23 +69,32 @@
               class="search"
               id="searchInput"
               type="search"
-              placeholder="搜索笔记路径…"
+              placeholder="搜索笔记…"
               autocomplete="off"
             />
             <div class="meta-line">
               <span id="fileCount">加载中…</span>
-              <span id="syncHint">只读</span>
+              <span id="syncHint">快照</span>
             </div>
           </div>
           <nav class="tree" id="tree" aria-label="笔记目录"></nav>
         </aside>
 
         <main class="main">
-          <article class="reader">
-            <div class="reader-inner" id="reader">
-              <p class="empty">正在从 GitHub 拉取目录…</p>
+          <section class="panel panel-read is-active" id="panelRead">
+            <article class="reader" id="readerScroll">
+              <div class="reader-inner" id="reader">
+                <p class="empty">正在加载…</p>
+              </div>
+            </article>
+          </section>
+
+          <section class="panel panel-graph" id="panelGraph">
+            <div class="graph-meta" id="graphMeta"></div>
+            <div class="graph-stage" id="graphStage">
+              <p class="empty">切换到「图谱」查看知识网络</p>
             </div>
-          </article>
+          </section>
         </main>
       </div>
     </div>

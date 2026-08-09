@@ -26,3 +26,4 @@ go.work.sum
 # GitHub Pages reader build output
 _site/
 web/manifest.json
+web/graph.json
