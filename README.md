@@ -99,16 +99,23 @@ git clone git@github.com:heathcetide/heathcetide-knowledge.git
 # 用 Obsidian → Open folder as vault → 选择本仓库根目录
 ```
 
-### 网页只读（GitHub 拉取展示）
+### 网页只读（Pages 静态快照）
 
-多端浏览不必装 Obsidian：打开静态阅读器，从 GitHub `main` 拉目录与 Markdown（只读，不写回）。
+多端浏览不必装 Obsidian：阅读器在部署时打包 Markdown，**运行时不打 GitHub API**（避免未认证 60 次/小时限流）。
 
-- 在线地址（启用 Pages 后）：[https://heathcetide.github.io/heathcetide-knowledge/](https://heathcetide.github.io/heathcetide-knowledge/)
-- 源码：[`web/`](web/)（Trees API 列 `.md` + `raw.githubusercontent.com` 取正文）
-- 本地预览：在仓库根目录起静态服务后访问 `/web/`，例如 `npx serve .` 再打开对应路径
-- 首次使用需在仓库 **Settings → Pages** 选择 **GitHub Actions** 作为源；之后 push `web/` 会自动部署
+- 在线地址：[https://heathcetide.github.io/heathcetide-knowledge/](https://heathcetide.github.io/heathcetide-knowledge/)
+- 源码：[`web/`](web/)，构建脚本 `node web/build.mjs` → 输出 `_site/`
+- 本地预览：
 
-分工：**本机 git push 更新知识库 → 网页自动读到最新 `main`。**
+```bash
+node web/build.mjs
+npx serve _site
+```
+
+- 首次使用：仓库 **Settings → Pages → Source** 选 **GitHub Actions**；Custom domain 留空  
+- push 笔记或 `web/` 后 Actions 会重新打包部署
+
+分工：**本机 git push → Pages 重新构建快照 → 网页只读浏览。**
 ---
 
 ## 更新日志

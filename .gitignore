@@ -22,3 +22,7 @@ coverage.*
 profile.cov
 go.work
 go.work.sum
+
+# GitHub Pages reader build output
+_site/
+web/manifest.json

@@ -1,7 +1,6 @@
 import { CONFIG } from "./config.js";
 
-const TREE_CACHE_KEY = `hk-tree:${CONFIG.owner}/${CONFIG.repo}@${CONFIG.branch}`;
-const FILE_CACHE_PREFIX = `hk-file:${CONFIG.owner}/${CONFIG.repo}@${CONFIG.branch}:`;
+const FILE_CACHE_PREFIX = `hk-file:v2:${CONFIG.owner}/${CONFIG.repo}:`;
 
 const els = {
   tree: document.getElementById("tree"),
@@ -12,12 +11,15 @@ const els = {
   menuBtn: document.getElementById("menuBtn"),
   backdrop: document.getElementById("backdrop"),
   repoLink: document.getElementById("repoLink"),
+  syncHint: document.getElementById("syncHint"),
 };
 
 /** @type {string[]} */
 let allPaths = [];
 /** @type {string | null} */
 let currentPath = null;
+/** @type {string | null} */
+let generatedAt = null;
 
 function encodePath(path) {
   return path
@@ -26,16 +28,13 @@ function encodePath(path) {
     .join("/");
 }
 
-function treeApiUrl() {
-  return `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/git/trees/${encodeURIComponent(CONFIG.branch)}?recursive=1`;
+/** 部署站：同域 /content；本地只开 web/ 时回退 raw（可能限流） */
+function contentUrl(path) {
+  return new URL(`./content/${encodePath(path)}`, location.href).href;
 }
 
 function rawUrl(path) {
   return `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${encodePath(path)}`;
-}
-
-function shouldIgnore(path) {
-  return CONFIG.ignorePrefixes.some((p) => path === p.slice(0, -1) || path.startsWith(p));
 }
 
 function getHashPath() {
@@ -102,7 +101,7 @@ function renderNode(node, prefix, filter) {
     const childEl = renderNode(child, childPrefix, filter);
     if (!childEl) continue;
     const details = document.createElement("details");
-    details.open = !q || q.length > 0;
+    details.open = Boolean(q);
     const summary = document.createElement("summary");
     summary.textContent = name;
     details.appendChild(summary);
@@ -155,38 +154,20 @@ function renderTree(filter = "") {
 }
 
 async function fetchTreePaths() {
-  const cached = sessionStorage.getItem(TREE_CACHE_KEY);
-  if (cached) {
-    try {
-      const data = JSON.parse(cached);
-      if (Array.isArray(data.paths)) return data.paths;
-    } catch {
-      /* ignore */
-    }
-  }
-
-  const res = await fetch(treeApiUrl(), {
-    headers: { Accept: "application/vnd.github+json" },
+  const res = await fetch(new URL("./manifest.json", location.href).href, {
+    cache: "no-cache",
   });
   if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`目录拉取失败 (${res.status}): ${text.slice(0, 180)}`);
+    throw new Error(
+      `目录加载失败 (${res.status})：缺少 manifest.json。请在仓库根目录执行 node web/build.mjs 后访问 _site/，或等待 Pages 重新部署。`
+    );
   }
   const json = await res.json();
-  if (!Array.isArray(json.tree)) {
-    throw new Error("GitHub Trees API 返回异常");
+  if (!Array.isArray(json.paths)) {
+    throw new Error("manifest.json 格式异常");
   }
-
-  const paths = json.tree
-    .filter((item) => item.type === "blob" && /\.md$/i.test(item.path))
-    .map((item) => item.path)
-    .filter((p) => !shouldIgnore(p));
-
-  sessionStorage.setItem(
-    TREE_CACHE_KEY,
-    JSON.stringify({ paths, fetchedAt: Date.now() })
-  );
-  return paths;
+  generatedAt = json.generatedAt || null;
+  return json.paths;
 }
 
 async function fetchMarkdown(path) {
@@ -194,7 +175,11 @@ async function fetchMarkdown(path) {
   const cached = sessionStorage.getItem(key);
   if (cached != null) return cached;
 
-  const res = await fetch(rawUrl(path));
+  let res = await fetch(contentUrl(path));
+  if (res.status === 404) {
+    // 本地只 serve 了 web/、尚未打包 content 时的兜底
+    res = await fetch(rawUrl(path));
+  }
   if (!res.ok) {
     throw new Error(`正文拉取失败 (${res.status}): ${path}`);
   }
@@ -203,7 +188,7 @@ async function fetchMarkdown(path) {
   return text;
 }
 
-function resolveMdImageSrc(src, mdPath) {
+function resolveAssetSrc(src, mdPath) {
   if (!src || /^(https?:|data:|\/\/)/i.test(src)) return src;
   const dir = mdPath.includes("/") ? mdPath.slice(0, mdPath.lastIndexOf("/")) : "";
   const cleaned = src.replace(/^\.\//, "");
@@ -218,7 +203,9 @@ function resolveMdImageSrc(src, mdPath) {
     if (seg === "..") parts.pop();
     else parts.push(seg);
   }
-  return rawUrl(parts.join("/"));
+  const resolved = parts.join("/");
+  // 优先同域 content；浏览器对 404 图片会失败，再靠部署包带上资源
+  return contentUrl(resolved);
 }
 
 function renderMarkdown(md, path) {
@@ -233,7 +220,7 @@ function renderMarkdown(md, path) {
 
   body.querySelectorAll("img").forEach((img) => {
     const src = img.getAttribute("src");
-    if (src) img.setAttribute("src", resolveMdImageSrc(src, path));
+    if (src) img.setAttribute("src", resolveAssetSrc(src, path));
   });
 
   body.querySelectorAll("a").forEach((a) => {
@@ -246,10 +233,8 @@ function renderMarkdown(md, path) {
       }
       return;
     }
-    // Obsidian-style relative / wiki-ish .md links → in-app
     let target = href.replace(/^\.\//, "").split("#")[0];
-    if (!target) return;
-    if (!target.endsWith(".md")) return;
+    if (!target || !target.endsWith(".md")) return;
     const dir = path.includes("/") ? path.slice(0, path.lastIndexOf("/")) : "";
     const abs = target.startsWith("/")
       ? target.slice(1)
@@ -298,10 +283,13 @@ async function openFile(path) {
 function showWelcome() {
   currentPath = null;
   setHashPath(null);
+  const when = generatedAt
+    ? `<br />快照时间：<code>${generatedAt}</code>`
+    : "";
   els.reader.innerHTML = `
     <p class="empty">
       从左侧选择一篇 Markdown 笔记。<br />
-      内容来自 GitHub 最新 <code>${CONFIG.branch}</code> 分支（只读，不会写回）。
+      内容随 Pages 部署打包（只读，不请求 GitHub API，也不写回）。${when}
     </p>
   `;
   renderTree(els.searchInput.value);
@@ -311,12 +299,7 @@ function clearCaches() {
   const keys = [];
   for (let i = 0; i < sessionStorage.length; i++) {
     const k = sessionStorage.key(i);
-    if (
-      k &&
-      (k === TREE_CACHE_KEY || k.startsWith(FILE_CACHE_PREFIX))
-    ) {
-      keys.push(k);
-    }
+    if (k && k.startsWith(FILE_CACHE_PREFIX)) keys.push(k);
   }
   keys.forEach((k) => sessionStorage.removeItem(k));
 }
@@ -327,6 +310,7 @@ async function boot() {
   try {
     allPaths = await fetchTreePaths();
     els.fileCount.textContent = `${allPaths.length} 篇`;
+    if (els.syncHint) els.syncHint.textContent = "静态快照";
     const fromHash = getHashPath();
     if (fromHash && allPaths.includes(fromHash)) {
       await openFile(fromHash);
@@ -350,7 +334,7 @@ els.searchInput.addEventListener("input", () => {
 els.refreshBtn.addEventListener("click", async () => {
   clearCaches();
   els.fileCount.textContent = "刷新中…";
-  els.reader.innerHTML = `<p class="status">正在重新从 GitHub 拉取…</p>`;
+  els.reader.innerHTML = `<p class="status">重新加载本地快照…</p>`;
   const keep = currentPath;
   await boot();
   if (keep && allPaths.includes(keep)) await openFile(keep);
