@@ -54,9 +54,37 @@
               "icon": "lucide-file",
               "title": "01-网络分层模型"
             }
+          },
+          {
+            "id": "40e13d4bb481a26c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "八股/Java基础/08-反射注解代理与SPI.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "08-反射注解代理与SPI"
+            }
+          },
+          {
+            "id": "23990337f88caa0c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_site/content/八股/Redis/01-基础与特性.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01-基础与特性"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -90,7 +118,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "数据结构",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -111,11 +139,13 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 216.37890625
+    "width": 431.4453125,
+    "collapsed": true
   },
   "right": {
     "id": "b489c2ea345f44d9",
@@ -233,45 +263,52 @@
       "cetide-contrib:写作贡献图谱": false
     }
   },
-  "active": "ea00f12dbe058bc6",
+  "active": "23990337f88caa0c",
   "lastOpenFiles": [
-    "八股/计算机网络/00-知识总览.md",
-    "八股/计算机网络/15-拓展知识与场景题.md",
-    "无标题-2026-03-07-1122.excalidraw",
-    "八股.zip",
-    "微服务/深度学习.md",
-    "微服务/基于Java的AI行为分析.md",
-    "微服务/Seata 的 AT 和 TCC 模式.md",
-    "微服务/Nacos.md",
-    "项目方案/并发爬虫教程.md",
-    "面经/Java.md",
-    "面经/操作系统.md",
-    "面经/AI大模型.md",
-    "面经/Go.md",
-    "项目方案/领券.md",
-    "面经",
-    "项目方案/Rust.md",
-    "测试与运维/使用apifox工具获得掘金的发帖接口.md",
-    "项目方案/异步系统设计/异步系统设计.md",
-    "项目方案/图片压缩技术.md",
-    "项目方案/面试官在筛选简历的时候比较看重什么？.md",
-    "项目方案/准备面试的时候，具体哪些知识点是重点呢？.md",
-    "项目方案/面试和简历上的的一些大忌.md",
-    "项目方案/项目包装.md",
-    "项目方案/接单.md",
-    "项目方案/Cetide网站的收藏.md",
-    "项目方案/Mock面试.md",
-    "项目方案/面试阶段.md",
-    "项目方案/资料.md",
-    "项目方案/开源项目.md",
-    "前端",
-    "Agent开发",
-    "Pasted image 20260721163452.png",
-    "客户端开发",
-    "日志",
-    "项目方案/异步系统设计",
-    "微服务",
-    "项目方案/手写系列",
-    "lFCt5qVH_image_mianshiya.png"
+    "_site/graph.json",
+    "_site/manifest.json",
+    "_site/content/README.md",
+    "_site/content/Pasted image 20260809211605.png",
+    "_site/content/Pasted image 20260809203649.png",
+    "_site/content/Pasted image 20260809203335.png",
+    "_site/content/Pasted image 20260809202731.png",
+    "_site/content/Pasted image 20260809201026.png",
+    "_site/content/Pasted image 20260809201009.png",
+    "_site/content/Pasted image 20260721163452.png",
+    "_site/content/lFCt5qVH_image_mianshiya.png",
+    "_site/content/Agent开发/RAG.md",
+    "_site/content/Agent开发/AI大模型.md",
+    "_site/content/Agent开发",
+    "_site/content/项目方案/Git.md",
+    "_site/content/项目方案/DevOps.md",
+    "_site/content/项目方案/CSRF.md",
+    "_site/content/项目方案/CI _ CD.md",
+    "_site/content/项目方案/Cetide网站的收藏.md",
+    "_site/content/项目方案/ApplicationListener.md",
+    "_site/content/项目方案/Ai大模型应用.md",
+    "_site/content/项目方案/WebRTC学习.md",
+    "_site/content/项目方案/Ubuntu 上安装 GCC.md",
+    "_site/content/项目方案/SSH相关.md",
+    "_site/content/项目方案/Spring.md",
+    "_site/content/项目方案/SIP.md",
+    "_site/content/项目方案/Rust.md",
+    "_site/content/项目方案/OpenFeign.md",
+    "_site/content/项目方案/Nginx.md",
+    "_site/content/项目方案/Mock面试.md",
+    "_site/content/项目方案/Maven.md",
+    "_site/content/项目方案/Kubernetes.md",
+    "_site/content/项目方案/Kubernetes 风格的资源管理进行设计。.md",
+    "_site/content/项目方案/Jenkins.md",
+    "_site/content/项目方案/ICE.md",
+    "_site/content/项目方案/Go通用.md",
+    "web/graph.json",
+    "_site/graph.js",
+    "Pasted image 20260809211605.png",
+    "web/graph.js",
+    "web/manifest.json",
+    "_site/content/项目方案/手写系列",
+    "_site/content/项目方案/异步系统设计",
+    "_site/content/项目方案",
+    "Pasted image 20260809203649.png"
   ]
 }
