@@ -32,7 +32,35 @@
             }
           },
           {
-            "id": "2e7cff8d602b3461",
+            "id": "ea00f12dbe058bc6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "八股/JVM/01-组成与执行流程.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01-组成与执行流程"
+            }
+          },
+          {
+            "id": "8c19a71453fc835a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "八股/计算机网络/15-拓展知识与场景题.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "15-拓展知识与场景题"
+            }
+          },
+          {
+            "id": "9e065dfe7dc1e04c",
             "type": "leaf",
             "state": {
               "type": "cetide-git-scm",
@@ -40,65 +68,9 @@
               "icon": "git-branch",
               "title": "源代码管理"
             }
-          },
-          {
-            "id": "ea00f12dbe058bc6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "八股/计算机网络/01-网络分层模型.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01-网络分层模型"
-            }
-          },
-          {
-            "id": "40e13d4bb481a26c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "八股/Java基础/08-反射注解代理与SPI.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "08-反射注解代理与SPI"
-            }
-          },
-          {
-            "id": "23990337f88caa0c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "八股/Go基础/10-题单总索引.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "10-题单总索引"
-            }
-          },
-          {
-            "id": "6ae6ada72b2ebbdd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "八股/Redis/01-基础与特性.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01-基础与特性"
-            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -132,7 +104,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "三层",
+                "query": "常量池",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -157,7 +129,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 431.4453125
+    "width": 274.1796875
   },
   "right": {
     "id": "b489c2ea345f44d9",
@@ -275,44 +247,44 @@
       "cetide-contrib:写作贡献图谱": false
     }
   },
-  "active": "6ae6ada72b2ebbdd",
+  "active": "9e065dfe7dc1e04c",
   "lastOpenFiles": [
-    "八股/Redis/00-知识总览.md",
-    "八股/Go基础/10-题单总索引.md",
-    "八股/Go基础/09-结构体语法与其它.md",
-    "八股/Go基础/08-字符串与拷贝.md",
-    "八股/Go基础/11-Goroutine与Channel.md",
-    "八股/Go基础/13-GMP调度器.md",
-    "八股/Go基础/00-知识总览.md",
-    "八股/Go基础/12-Select与并发模式.md",
-    "八股/Go基础/14-GC与内存逃逸.md",
-    "八股/Go基础/16-sync包与原子操作.md",
-    "八股/Go基础/17-反射与泛型.md",
-    "八股/Go基础/20-场景题与踩坑清单.md",
-    "八股/Go基础/18-测试竞态与基准.md",
-    "八股/Go基础/19-工程实践与性能排查.md",
-    "八股/Go基础/15-Context.md",
-    "八股/MySQL/04-事务与MVCC.md",
-    "八股/MySQL/03-索引与B+树.md",
+    "八股/计算机网络/14-WebSocket.md",
+    "八股/计算机网络/12-gRPC与网关治理.md",
+    "八股/计算机网络/13-实时通信-WebRTC-SIP-RTP.md",
+    "八股/计算机网络/11-抓包看图说话.md",
+    "八股/计算机网络/10-HTTP2与QUIC.md",
+    "八股/计算机网络/09-代理负载与网络IO.md",
+    "八股/计算机网络/08-高频对比与场景题.md",
+    "八股/计算机网络/07-输入URL全过程.md",
+    "八股/计算机网络/06-DNS与应用层.md",
+    "八股/计算机网络/05-HTTPS与安全.md",
+    "八股/计算机网络/04-HTTP.md",
+    "八股/计算机网络/03-TCP与UDP.md",
+    "八股/计算机网络/02-IP与网络层.md",
+    "八股/计算机网络/01-网络分层模型.md",
+    "八股/计算机网络/00-知识总览.md",
+    "八股/JVM/12-题单总索引.md",
+    "八股/JVM/11-JIT-AOT与逃逸分析.md",
+    "八股/JVM/10-OOM泄漏与调优排查.md",
+    "八股/JVM/09-引用与对象创建存储.md",
+    "八股/JVM/08-CMS-G1-ZGC详解.md",
+    "八股/JVM/07-垃圾收集器总览.md",
+    "八股/JVM/06-分代与GC类型.md",
+    "八股/JVM/05-GC基础与算法.md",
+    "八股/JVM/04-类加载与双亲委派.md",
+    "八股/JVM/03-堆栈与直接内存.md",
+    "八股/JVM/02-运行时数据区.md",
+    "Pasted image 20260821173722.png",
+    "Pasted image 20260821173711.png",
+    "Pasted image 20260821173414.png",
+    "Pasted image 20260821171726.png",
+    "Pasted image 20260821171711.png",
+    "Pasted image 20260821171702.png",
+    "Pasted image 20260821171648.png",
+    "Pasted image 20260821163931.png",
     "Pasted image 20260811150203.png",
-    "_site/content/八股/MySQL/07-数据类型与建表.md",
-    "八股/MySQL/01-SQL执行与优化器.md",
-    "_site/content/八股/MySQL/02-存储引擎与内存结构.md",
     "Pasted image 20260811144814.png",
-    "Pasted image 20260811144510.png",
-    "Pasted image 20260811144344.png",
-    "_site/content/八股/MySQL/00-知识总览.md",
-    "八股/MySQL/09-高可用主从读写分离.md",
-    "八股/MySQL/11-同步迁移归档CDC.md",
-    "八股/MySQL/10-分库分表与分区.md",
-    "八股/MySQL/08-SQL语法与调优.md",
-    "八股/MySQL/07-数据类型与建表.md",
-    "Pasted image 20260811130845.png",
-    "Pasted image 20260811130725.png",
-    "Pasted image 20260811113616.png",
-    "Pasted image 20260811113051.png",
-    "Pasted image 20260811112226.png",
-    "Pasted image 20260811111244.png",
     "_site/graph.json",
     "_site/manifest.json",
     "_site/content/Agent开发",
