@@ -92,6 +92,68 @@ func safe() {
 
 ---
 
+### Q6. `error` 是什么？如何自定义错误？
+
+```go
+type error interface {
+    Error() string
+}
+```
+
+自定义：
+
+```go
+type NotFoundError struct{ Key string }
+func (e *NotFoundError) Error() string { return e.Key + " not found" }
+```
+
+或 `errors.New` / `fmt.Errorf`。
+
+---
+
+### Q7. `errors.Is` / `errors.As` / `%w` 包装怎么讲？
+
+Go 1.13+ 错误链：
+
+```go
+err := fmt.Errorf("load: %w", ErrNotFound)
+errors.Is(err, ErrNotFound)  // true，沿链比较
+var e *NotFoundError
+errors.As(err, &e)           // 沿链找类型
+```
+
+- `%w`：包装保留 cause  
+- `%v`：不形成可 Unwrap 的链（一般）  
+- 判断用 `Is`/`As`，少用字符串比较  
+
+---
+
+### Q8. 什么时候该返回 error，什么时候 panic？
+
+| 返回 error | panic |
+| --- | --- |
+| 可预期业务/IO 失败 | 程序bug：不变量破损 |
+| 调用方应处理 | 初始化失败、不可继续 |
+| 库的常态 API | 边界 recover 兜底 |
+
+服务进程：中间件 recover → 记日志 → 500；不要用 panic 当控制流。
+
+---
+
+### Q9. defer 对性能有影响吗？
+
+有一定开销（注册延迟调用），但相对 IO/系统调用通常可忽略。  
+热路径微优化可手写清理，**可读性优先**；先 profile 再谈。
+
+---
+
+### Q10. panic 会不会跨 goroutine 被 recover？
+
+**不会。** panic 只在**当前 goroutine** 沿 defer 栈展开；其它 goroutine 的 recover 救不了它。  
+子 goroutine 必须自己 defer recover，或把错误通过 channel 送回。
+
+---
+
 ## 关联
 
-- [[05-函数方法与闭包]] · [[09-结构体语法与其它]]
+- [[05-函数方法与闭包]] · [[15-Context]] · [[11-Goroutine与Channel]] · [[09-结构体语法与其它]]

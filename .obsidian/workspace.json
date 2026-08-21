@@ -75,7 +75,21 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_site/content/八股/Redis/01-基础与特性.md",
+                "file": "八股/Go基础/10-题单总索引.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "10-题单总索引"
+            }
+          },
+          {
+            "id": "6ae6ada72b2ebbdd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "八股/Redis/01-基础与特性.md",
                 "mode": "source",
                 "source": false
               },
@@ -84,7 +98,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -118,7 +132,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "数据结构",
+                "query": "三层",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -139,13 +153,11 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 431.4453125,
-    "collapsed": true
+    "width": 431.4453125
   },
   "right": {
     "id": "b489c2ea345f44d9",
@@ -263,52 +275,53 @@
       "cetide-contrib:写作贡献图谱": false
     }
   },
-  "active": "23990337f88caa0c",
+  "active": "6ae6ada72b2ebbdd",
   "lastOpenFiles": [
+    "八股/Redis/00-知识总览.md",
+    "八股/Go基础/10-题单总索引.md",
+    "八股/Go基础/09-结构体语法与其它.md",
+    "八股/Go基础/08-字符串与拷贝.md",
+    "八股/Go基础/11-Goroutine与Channel.md",
+    "八股/Go基础/13-GMP调度器.md",
+    "八股/Go基础/00-知识总览.md",
+    "八股/Go基础/12-Select与并发模式.md",
+    "八股/Go基础/14-GC与内存逃逸.md",
+    "八股/Go基础/16-sync包与原子操作.md",
+    "八股/Go基础/17-反射与泛型.md",
+    "八股/Go基础/20-场景题与踩坑清单.md",
+    "八股/Go基础/18-测试竞态与基准.md",
+    "八股/Go基础/19-工程实践与性能排查.md",
+    "八股/Go基础/15-Context.md",
+    "八股/MySQL/04-事务与MVCC.md",
+    "八股/MySQL/03-索引与B+树.md",
+    "Pasted image 20260811150203.png",
+    "_site/content/八股/MySQL/07-数据类型与建表.md",
+    "八股/MySQL/01-SQL执行与优化器.md",
+    "_site/content/八股/MySQL/02-存储引擎与内存结构.md",
+    "Pasted image 20260811144814.png",
+    "Pasted image 20260811144510.png",
+    "Pasted image 20260811144344.png",
+    "_site/content/八股/MySQL/00-知识总览.md",
+    "八股/MySQL/09-高可用主从读写分离.md",
+    "八股/MySQL/11-同步迁移归档CDC.md",
+    "八股/MySQL/10-分库分表与分区.md",
+    "八股/MySQL/08-SQL语法与调优.md",
+    "八股/MySQL/07-数据类型与建表.md",
+    "Pasted image 20260811130845.png",
+    "Pasted image 20260811130725.png",
+    "Pasted image 20260811113616.png",
+    "Pasted image 20260811113051.png",
+    "Pasted image 20260811112226.png",
+    "Pasted image 20260811111244.png",
     "_site/graph.json",
     "_site/manifest.json",
-    "_site/content/README.md",
-    "_site/content/Pasted image 20260809211605.png",
-    "_site/content/Pasted image 20260809203649.png",
-    "_site/content/Pasted image 20260809203335.png",
-    "_site/content/Pasted image 20260809202731.png",
-    "_site/content/Pasted image 20260809201026.png",
-    "_site/content/Pasted image 20260809201009.png",
-    "_site/content/Pasted image 20260721163452.png",
-    "_site/content/lFCt5qVH_image_mianshiya.png",
-    "_site/content/Agent开发/RAG.md",
-    "_site/content/Agent开发/AI大模型.md",
     "_site/content/Agent开发",
-    "_site/content/项目方案/Git.md",
-    "_site/content/项目方案/DevOps.md",
-    "_site/content/项目方案/CSRF.md",
-    "_site/content/项目方案/CI _ CD.md",
-    "_site/content/项目方案/Cetide网站的收藏.md",
-    "_site/content/项目方案/ApplicationListener.md",
-    "_site/content/项目方案/Ai大模型应用.md",
-    "_site/content/项目方案/WebRTC学习.md",
-    "_site/content/项目方案/Ubuntu 上安装 GCC.md",
-    "_site/content/项目方案/SSH相关.md",
-    "_site/content/项目方案/Spring.md",
-    "_site/content/项目方案/SIP.md",
-    "_site/content/项目方案/Rust.md",
-    "_site/content/项目方案/OpenFeign.md",
-    "_site/content/项目方案/Nginx.md",
-    "_site/content/项目方案/Mock面试.md",
-    "_site/content/项目方案/Maven.md",
-    "_site/content/项目方案/Kubernetes.md",
-    "_site/content/项目方案/Kubernetes 风格的资源管理进行设计。.md",
-    "_site/content/项目方案/Jenkins.md",
-    "_site/content/项目方案/ICE.md",
-    "_site/content/项目方案/Go通用.md",
     "web/graph.json",
     "_site/graph.js",
-    "Pasted image 20260809211605.png",
     "web/graph.js",
     "web/manifest.json",
     "_site/content/项目方案/手写系列",
     "_site/content/项目方案/异步系统设计",
-    "_site/content/项目方案",
-    "Pasted image 20260809203649.png"
+    "_site/content/项目方案"
   ]
 }
